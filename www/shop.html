@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Zen Luxury Shop — Browse our curated collections of elevated fashion."/>
-  <title>Shop — Zen Luxury</title>
+  <meta name="description" content="ZL · Zen Luxury Shop — Hoodies, Tees, Cargo Pants, Bombers. Premium Black/Gold Streetwear."/>
+  <title>Shop — ZL · Zen Luxury</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="assets/css/style.css"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>"/>
-  <style>
-    .product-card { transition: opacity 0.35s ease, transform 0.35s ease; }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
+  <style>.product-card{transition:opacity .35s ease,transform .35s ease;}</style>
 </head>
 <body>
 
-<!-- Navigation -->
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo">ZEN <span>LUXURY</span></a>
+      <a href="index.html" class="nav__logo-wrap">
+        <div class="zl-mark">ZL</div>
+        <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+      </a>
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
@@ -27,36 +27,27 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav__actions">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Search">
-          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
-        </svg>
-        <div class="nav__cart-count" role="button" aria-label="Open cart" tabindex="0">
-          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/>
-          </svg>
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div class="nav__cart-count" role="button" tabindex="0" aria-label="Open cart">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
           <span class="badge">0</span>
         </div>
-        <button class="nav__hamburger" aria-label="Toggle menu">
-          <span></span><span></span><span></span>
-        </button>
+        <button class="nav__hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
       </div>
     </div>
   </div>
 </nav>
 <div class="nav__mobile">
-  <a href="index.html">Home</a>
-  <a href="shop.html">Shop</a>
-  <a href="about.html">About</a>
-  <a href="contact.html">Contact</a>
+  <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
 </div>
 
-<!-- Shop Hero -->
+<!-- Hero -->
 <div class="shop-hero">
   <div class="container">
-    <p class="gold uppercase" style="font-size:.65rem;letter-spacing:.25em;margin-bottom:.75rem;">All Collections</p>
-    <h1 style="font-size:clamp(2.5rem,5vw,4.5rem);">The Shop</h1>
+    <p class="gold uppercase" style="font-size:.62rem;letter-spacing:.26em;margin-bottom:.6rem;">ZL · SS26</p>
+    <h1 style="font-size:clamp(2.4rem,5vw,4rem);">The Drop</h1>
     <div class="divider"></div>
-    <p style="max-width:420px;margin:0 auto;text-align:center;">Every piece is a statement. Every detail, a signature.</p>
+    <p style="max-width:380px;margin:0 auto;text-align:center;">Limited pieces. Unlimited intention.</p>
   </div>
 </div>
 
@@ -66,242 +57,329 @@
     <div class="filters__inner">
       <div class="filter-group">
         <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="women">Women</button>
-        <button class="filter-btn" data-filter="men">Men</button>
+        <button class="filter-btn" data-filter="hoodies">Hoodies</button>
+        <button class="filter-btn" data-filter="tees">Tees</button>
+        <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+        <button class="filter-btn" data-filter="outerwear">Outerwear</button>
         <button class="filter-btn" data-filter="accessories">Accessories</button>
         <button class="filter-btn" data-filter="sale">Sale</button>
       </div>
-      <select class="sort-select" aria-label="Sort products">
+      <select class="sort-select" aria-label="Sort">
         <option value="featured">Featured</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
+        <option value="price-asc">Price: Low → High</option>
+        <option value="price-desc">Price: High → Low</option>
       </select>
     </div>
   </div>
 </div>
 
 <!-- Products -->
-<section style="background:var(--black);padding:4rem 0 7rem;">
+<section style="background:var(--black);padding:3.5rem 0 6rem;">
   <div class="container">
     <div class="products__grid">
 
-      <!-- Women -->
-      <div class="product-card" data-category="women" data-price="890">
+      <!-- HOODIES -->
+      <div class="product-card" data-category="hoodies" data-price="185">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Noir Silk Dress" loading="lazy"/>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80" alt="ZL Oversized Hoodie Black" loading="lazy"/>
           <span class="product-card__badge">New</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Noir Silk Dress',890,'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=60','S')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Oversized Hoodie',185,'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=200&q=60',getSelectedSize(this))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
-          <p class="product-card__category">Women</p>
-          <h4 class="product-card__name">Noir Silk Dress</h4>
-          <p class="product-card__price">$890</p>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="women" data-price="340">
-        <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80" alt="Gold Accent Blouse" loading="lazy"/>
-          <span class="product-card__badge" style="background:var(--black);color:var(--gold);border:1px solid var(--gold);">−20%</span>
-          <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Gold Accent Blouse',340,'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=200&q=60','M')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-            </button>
-            <button class="product-card__action-btn" title="Wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </button>
+          <p class="product-card__category">Hoodies</p>
+          <h4 class="product-card__name">ZL Oversized Hoodie</h4>
+          <p class="product-card__price">$185</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+            <button class="size-chip" data-size="XXL">XXL</button>
           </div>
         </div>
-        <div class="product-card__body">
-          <p class="product-card__category">Women</p>
-          <h4 class="product-card__name">Gold Accent Blouse</h4>
-          <p class="product-card__price"><s>$425</s> $340</p>
-        </div>
       </div>
 
-      <div class="product-card" data-category="women" data-price="1250">
+      <div class="product-card" data-category="hoodies" data-price="195">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Velvet Evening Gown" loading="lazy"/>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=600&q=80" alt="ZL Gold Logo Hoodie" loading="lazy"/>
           <span class="product-card__badge">Limited</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Velvet Evening Gown',1250,'https://images.unsplash.com/photo-1509631179647-0177331693ae?w=200&q=60','M')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Gold Logo Hoodie',195,'https://images.unsplash.com/photo-1509942774463-acf339cf87d5?w=200&q=60',getSelectedSize(this))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
-          <p class="product-card__category">Women</p>
-          <h4 class="product-card__name">Velvet Evening Gown</h4>
-          <p class="product-card__price">$1,250</p>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="women" data-price="490">
-        <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80" alt="Cashmere Wrap Coat" loading="lazy"/>
-          <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Cashmere Wrap Coat',490,'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=200&q=60','L')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-            </button>
-            <button class="product-card__action-btn" title="Wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </button>
+          <p class="product-card__category">Hoodies</p>
+          <h4 class="product-card__name">ZL Gold Logo Hoodie</h4>
+          <p class="product-card__price">$195</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip sold-out" data-size="XL">XL</button>
           </div>
         </div>
-        <div class="product-card__body">
-          <p class="product-card__category">Women</p>
-          <h4 class="product-card__name">Cashmere Wrap Coat</h4>
-          <p class="product-card__price">$490</p>
-        </div>
       </div>
 
-      <!-- Men -->
-      <div class="product-card" data-category="men" data-price="620">
+      <!-- TEES -->
+      <div class="product-card" data-category="tees" data-price="95">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80" alt="Obsidian Blazer" loading="lazy"/>
-          <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Obsidian Blazer',620,'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=200&q=60','M')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-            </button>
-            <button class="product-card__action-btn" title="Wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </button>
-          </div>
-        </div>
-        <div class="product-card__body">
-          <p class="product-card__category">Men</p>
-          <h4 class="product-card__name">Obsidian Blazer</h4>
-          <p class="product-card__price">$620</p>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="men" data-price="380">
-        <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=600&q=80" alt="Tailored Trousers" loading="lazy"/>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80" alt="ZL Gold Script Tee" loading="lazy"/>
           <span class="product-card__badge">New</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Tailored Trousers',380,'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=200&q=60','32')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Gold Script Tee',95,'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=200&q=60',getSelectedSize(this))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
-          <p class="product-card__category">Men</p>
-          <h4 class="product-card__name">Tailored Trousers</h4>
+          <p class="product-card__category">Tees</p>
+          <h4 class="product-card__name">ZL Gold Script Tee</h4>
+          <p class="product-card__price">$95</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+            <button class="size-chip" data-size="XXL">XXL</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="tees" data-price="85">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?w=600&q=80" alt="ZL Essential Black Tee" loading="lazy"/>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Essential Tee',85,'https://images.unsplash.com/photo-1527719327859-c6ce80353573?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Tees</p>
+          <h4 class="product-card__name">ZL Essential Tee</h4>
+          <p class="product-card__price">$85</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOMS -->
+      <div class="product-card" data-category="bottoms" data-price="145">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&q=80" alt="ZL Cargo Pants" loading="lazy"/>
+          <span class="product-card__badge product-card__badge--sale">−15%</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Cargo Pants',145,'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Bottoms</p>
+          <h4 class="product-card__name">ZL Cargo Pants</h4>
+          <p class="product-card__price"><s>$170</s> $145</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip sold-out" data-size="XL">XL</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="bottoms" data-price="125">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&q=80" alt="ZL Track Pants" loading="lazy"/>
+          <span class="product-card__badge">New</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Track Pants',125,'https://images.unsplash.com/photo-1542272604-787c3835535d?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Bottoms</p>
+          <h4 class="product-card__name">ZL Track Pants</h4>
+          <p class="product-card__price">$125</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- OUTERWEAR -->
+      <div class="product-card" data-category="outerwear" data-price="320">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80" alt="ZL Satin Bomber" loading="lazy"/>
+          <span class="product-card__badge">Limited</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Satin Bomber',320,'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Outerwear</p>
+          <h4 class="product-card__name">ZL Satin Bomber</h4>
+          <p class="product-card__price">$320</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="outerwear" data-price="380">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1544441893-675973e31985?w=600&q=80" alt="ZL Puffer Vest" loading="lazy"/>
+          <span class="product-card__badge">New</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Quilted Puffer',380,'https://images.unsplash.com/photo-1544441893-675973e31985?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Outerwear</p>
+          <h4 class="product-card__name">ZL Quilted Puffer</h4>
           <p class="product-card__price">$380</p>
-        </div>
-      </div>
-
-      <div class="product-card" data-category="men" data-price="520">
-        <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1594938298603-c8148c4b4e84?w=600&q=80" alt="Merino Roll Neck" loading="lazy"/>
-          <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Merino Roll Neck',520,'https://images.unsplash.com/photo-1594938298603-c8148c4b4e84?w=200&q=60','L')">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
-            </button>
-            <button class="product-card__action-btn" title="Wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
-            </button>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
           </div>
         </div>
-        <div class="product-card__body">
-          <p class="product-card__category">Men</p>
-          <h4 class="product-card__name">Merino Roll Neck</h4>
-          <p class="product-card__price">$520</p>
-        </div>
       </div>
 
-      <!-- Accessories -->
-      <div class="product-card" data-category="accessories" data-price="280">
+      <!-- ACCESSORIES -->
+      <div class="product-card" data-category="accessories" data-price="65">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80" alt="Zenith Leather Bag" loading="lazy"/>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=600&q=80" alt="ZL Snapback Cap" loading="lazy"/>
           <span class="product-card__badge">New</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Zenith Leather Bag',280,'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=60','One Size')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Snapback Cap',65,'https://images.unsplash.com/photo-1588850561407-ed78c282e89b?w=200&q=60','One Size')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
           <p class="product-card__category">Accessories</p>
-          <h4 class="product-card__name">Zenith Leather Bag</h4>
-          <p class="product-card__price">$280</p>
+          <h4 class="product-card__name">ZL Snapback Cap</h4>
+          <p class="product-card__price">$65</p>
+          <div class="product-card__sizes"><button class="size-chip selected" data-size="One Size">One Size</button></div>
         </div>
       </div>
 
-      <div class="product-card" data-category="accessories" data-price="145">
+      <div class="product-card" data-category="accessories" data-price="48">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Gold Silk Scarf" loading="lazy"/>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="ZL Gold Beanie" loading="lazy"/>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Gold Silk Scarf',145,'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=60','One Size')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Gold Beanie',48,'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=60','One Size')">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
           <p class="product-card__category">Accessories</p>
-          <h4 class="product-card__name">Gold Silk Scarf</h4>
-          <p class="product-card__price">$145</p>
+          <h4 class="product-card__name">ZL Gold Beanie</h4>
+          <p class="product-card__price">$48</p>
+          <div class="product-card__sizes"><button class="size-chip selected" data-size="One Size">One Size</button></div>
         </div>
       </div>
 
-      <!-- Sale -->
-      <div class="product-card" data-category="sale" data-price="195">
+      <!-- SALE -->
+      <div class="product-card" data-category="sale" data-price="69">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=600&q=80" alt="Structured Midi Skirt" loading="lazy"/>
-          <span class="product-card__badge" style="background:var(--black);color:var(--gold);border:1px solid var(--gold);">−40%</span>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=600&q=80" alt="ZL Relaxed Tee — Sale" loading="lazy"/>
+          <span class="product-card__badge product-card__badge--sale">−40%</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Structured Midi Skirt',195,'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=200&q=60','S')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Relaxed Tee',69,'https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?w=200&q=60',getSelectedSize(this))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
           <p class="product-card__category">Sale</p>
-          <h4 class="product-card__name">Structured Midi Skirt</h4>
-          <p class="product-card__price"><s>$325</s> $195</p>
+          <h4 class="product-card__name">ZL Relaxed Tee</h4>
+          <p class="product-card__price"><s>$115</s> $69</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+          </div>
         </div>
       </div>
 
-      <div class="product-card" data-category="sale" data-price="210">
+      <div class="product-card" data-category="sale" data-price="98">
         <div class="product-card__img-wrap">
-          <img class="product-card__img" src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=600&q=80" alt="Linen Wide-Leg Trousers" loading="lazy"/>
-          <span class="product-card__badge" style="background:var(--black);color:var(--gold);border:1px solid var(--gold);">−30%</span>
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=600&q=80" alt="ZL Slim Jogger — Sale" loading="lazy"/>
+          <span class="product-card__badge product-card__badge--sale">−30%</span>
           <div class="product-card__actions">
-            <button class="product-card__action-btn" title="Add to Cart" onclick="addToCart('Linen Wide-Leg Trousers',210,'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&q=60','M')">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Slim Jogger',98,'https://images.unsplash.com/photo-1490578474895-699cd4e2cf59?w=200&q=60',getSelectedSize(this))">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
             </button>
-            <button class="product-card__action-btn" title="Wishlist">
+            <button class="product-card__action-btn" title="Wishlist" onclick="toggleWishlist(this)">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
             </button>
           </div>
         </div>
         <div class="product-card__body">
           <p class="product-card__category">Sale</p>
-          <h4 class="product-card__name">Linen Wide-Leg Trousers</h4>
-          <p class="product-card__price"><s>$300</s> $210</p>
+          <h4 class="product-card__name">ZL Slim Jogger</h4>
+          <p class="product-card__price"><s>$140</s> $98</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+          </div>
         </div>
       </div>
 
@@ -309,14 +387,11 @@
   </div>
 </section>
 
-<!-- Newsletter -->
+<!-- Newsletter / Footer shared with index -->
 <div class="newsletter">
   <div class="container">
     <div class="newsletter__inner">
-      <div class="newsletter__text">
-        <h3>Join the Circle</h3>
-        <p>Early access to collections, private events, and the Zen Luxury world.</p>
-      </div>
+      <div class="newsletter__text"><h3>Join the ZL Circle</h3><p>Early access to drops and exclusive discounts.</p></div>
       <form class="newsletter__form" novalidate>
         <input type="email" class="newsletter__input" placeholder="Your email address" required/>
         <button type="submit" class="btn btn--gold">Subscribe</button>
@@ -325,75 +400,44 @@
   </div>
 </div>
 
-<!-- Footer -->
 <footer class="footer">
   <div class="container">
     <div class="footer__grid">
       <div>
-        <p class="footer__brand-logo">ZEN <span>LUXURY</span></p>
-        <p class="footer__brand-desc">Elevated fashion rooted in mindful craft. Designed for those who appreciate the silence between the notes.</p>
+        <div class="footer__brand-logo"><div class="zl-mark">ZL</div><p class="footer__brand-logo-text">ZEN <span>LUXURY</span></p></div>
+        <p class="footer__brand-desc">Premium streetwear built with intention.</p>
         <div class="footer__socials">
-          <a href="#" class="footer__social" aria-label="Instagram">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
-          </a>
-          <a href="#" class="footer__social" aria-label="Twitter/X">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-          </a>
+          <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a>
+          <a href="#" class="footer__social" aria-label="Twitter/X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+        </div>
+        <div class="footer__payments" style="margin-top:1rem;">
+          <span class="card-badge">Visa</span><span class="card-badge">MC</span><span class="card-badge">PayPal</span><span class="card-badge">Apple Pay</span><span class="card-badge">Klarna</span>
         </div>
       </div>
-      <div>
-        <p class="footer__heading">Shop</p>
-        <ul class="footer__links">
-          <li><a href="shop.html">New Arrivals</a></li>
-          <li><a href="shop.html">Women</a></li>
-          <li><a href="shop.html">Men</a></li>
-          <li><a href="shop.html">Accessories</a></li>
-          <li><a href="shop.html">Sale</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__heading">Company</p>
-        <ul class="footer__links">
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Press</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer__heading">Support</p>
-        <ul class="footer__links">
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
+      <div><p class="footer__heading">Shop</p><ul class="footer__links"><li><a href="shop.html">Hoodies</a></li><li><a href="shop.html">Tees</a></li><li><a href="shop.html">Bottoms</a></li><li><a href="shop.html">Outerwear</a></li><li><a href="shop.html">Accessories</a></li></ul></div>
+      <div><p class="footer__heading">Company</p><ul class="footer__links"><li><a href="about.html">About ZL</a></li><li><a href="contact.html">Contact</a></li><li><a href="#">Press</a></li></ul></div>
+      <div><p class="footer__heading">Support</p><ul class="footer__links"><li><a href="#">Shipping &amp; Returns</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Track Order</a></li><li><a href="#">FAQ</a></li></ul></div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Zen Luxury. All rights reserved.</p>
-      <div class="footer__bottom-links">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
-      </div>
+      <p>© 2026 Zen Luxury · ZL. All rights reserved.</p>
+      <div class="footer__bottom-links"><a href="#">Privacy</a><a href="#">Terms</a></div>
     </div>
   </div>
 </footer>
 
-<!-- Cart Drawer -->
 <div class="cart-overlay"></div>
 <aside class="cart-drawer" role="dialog" aria-label="Shopping cart">
   <div class="cart-drawer__header">
     <h3 class="cart-drawer__title">Your Cart</h3>
-    <button class="cart-drawer__close" aria-label="Close cart">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
-    </button>
+    <button class="cart-drawer__close" aria-label="Close cart"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
   </div>
   <div class="cart-drawer__body"></div>
   <div class="cart-drawer__footer">
-    <div class="cart-drawer__total">
-      <span>Total</span>
-      <strong>$0.00</strong>
-    </div>
-    <button class="btn btn--gold cart-checkout-btn" style="width:100%;text-align:center;">Proceed to Checkout</button>
+    <div class="cart-drawer__subtotal"><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div>
+    <div class="cart-drawer__total"><span>Total</span><strong id="cart-total">$0.00</strong></div>
+    <a href="checkout.html" class="btn btn--gold btn--full" id="checkout-btn">Proceed to Checkout</a>
+    <button class="btn btn--outline btn--full" style="margin-top:.5rem;" onclick="closeCart()">Continue Shopping</button>
+    <div class="cart-pay-icons"><span>Pay with</span><span class="card-badge">PayPal</span><span class="card-badge">Visa</span><span class="card-badge">Apple Pay</span></div>
   </div>
 </aside>
 
@@ -401,7 +445,6 @@
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
   <span class="toast__message"></span>
 </div>
-
 <script src="assets/js/main.js"></script>
 </body>
 </html>
