@@ -865,6 +865,39 @@ label:has(.auth-forgot) { display:flex; justify-content:space-between; align-ite
 .footer__contact-mini a:hover { color:var(--gold); }
 
 /* ═══════════════════════════════════════
+   QUICK CONTACT CARDS (contact page)
+═══════════════════════════════════════ */
+.quick-contact { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
+
+.quick-contact__card {
+  display:flex; align-items:center; gap:1rem;
+  padding:1.3rem 1.5rem;
+  background:var(--black); border:1px solid rgba(201,168,76,.14);
+  border-radius:var(--radius); transition:border-color var(--transition), transform var(--transition);
+  cursor:pointer; color:inherit; text-decoration:none;
+}
+.quick-contact__card:hover { border-color:var(--gold); transform:translateY(-2px); }
+.quick-contact__card--whatsapp { border-color:rgba(37,211,102,.3); }
+.quick-contact__card--whatsapp:hover { border-color:#25D366; }
+
+.quick-contact__icon {
+  width:44px; height:44px; min-width:44px;
+  border:1px solid rgba(201,168,76,.2); border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold);
+}
+.quick-contact__card--whatsapp .quick-contact__icon { border-color:rgba(37,211,102,.3); color:#25D366; }
+
+.quick-contact__icon svg { width:20px; height:20px; }
+
+.quick-contact__label { font-size:.6rem; letter-spacing:.18em; text-transform:uppercase; color:var(--grey); margin-bottom:.2rem; }
+.quick-contact__value { font-size:.88rem; font-weight:500; color:var(--white); margin-bottom:.15rem; }
+.quick-contact__note  { font-size:.65rem; color:var(--grey); }
+
+@media(max-width:768px) { .quick-contact { grid-template-columns:1fr; } }
+@media(max-width:480px) { .quick-contact__card { padding:1rem 1.2rem; } }
+
+/* ═══════════════════════════════════════
    PAYMENT BLOCKS (checkout)
 ═══════════════════════════════════════ */
 .pay-block {

@@ -274,24 +274,6 @@ document.querySelectorAll('.newsletter__form').forEach(form => {
 });
 
 /* ─────────────────────────────────────
-   CONTACT FORM — sends via your email app
-───────────────────────────────────── */
-document.querySelector('.contact-form')?.addEventListener('submit', function(e) {
-  e.preventDefault();
-  const form    = e.target;
-  const consent = form.querySelector('#consent');
-  if (consent && !consent.checked) {
-    showToast('Please accept the Privacy Policy to send your message.'); return;
-  }
-  const name    = `${form.querySelector('#first-name')?.value || ''} ${form.querySelector('#last-name')?.value || ''}`.trim();
-  const email   = form.querySelector('#email')?.value || '';
-  const subject = form.querySelector('#subject')?.value || 'Contact';
-  const message = form.querySelector('#message')?.value || '';
-  window.location.href = `mailto:J.ovk.zakelijk@gmail.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
-  showToast('Opening your email app…');
-});
-
-/* ─────────────────────────────────────
    PRODUCT ENRICHMENT
    Adds short descriptions + luxury urgency tags to product cards.
 ───────────────────────────────────── */
