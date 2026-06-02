@@ -8,6 +8,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="assets/css/style.css"/>
+  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID -->
+  <!-- Get your ID: analytics.google.com → Admin → Data Streams → Web → Measurement ID -->
+  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+  <!-- Microsoft Clarity — replace XXXXXXXXXX with your Project ID -->
+  <!-- Get your ID: clarity.microsoft.com → New Project → Web → Copy Tracking Code -->
+  <!-- <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","XXXXXXXXXX");</script> -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 </head>
 <body>
@@ -26,7 +33,9 @@
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
+        <li><a href="#bestsellers">Bestsellers</a></li>
         <li><a href="about.html">About</a></li>
+        <li><a href="faq.html">FAQ</a></li>
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav__actions">
@@ -41,7 +50,12 @@
   </div>
 </nav>
 <div class="nav__mobile">
-  <a href="index.html">Home</a><a href="shop.html">Shop</a><a href="about.html">About</a><a href="contact.html">Contact</a>
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="#bestsellers">Bestsellers</a>
+  <a href="about.html">About</a>
+  <a href="faq.html">FAQ</a>
+  <a href="contact.html">Contact</a>
 </div>
 
 <!-- HERO -->
@@ -49,12 +63,26 @@
   <div class="hero__bg"></div>
   <div class="container">
     <div class="hero__content">
-      <div class="hero__eyebrow"><span>SS26 Drop — Limited Pieces</span></div>
-      <h1>Wear the<br/><em>Silence</em></h1>
-      <p>Premium streetwear built for those who move with intention. Every cut deliberate. Every thread chosen.</p>
+      <div class="hero__eyebrow"><span>SS26 Collection · Limited to 500 Pieces Worldwide</span></div>
+      <h1>Premium<br/><em>Black &amp; Gold</em></h1>
+      <p>Streetwear engineered for those who move with intention. Every cut deliberate. Every thread chosen. Free shipping from €150 · 30-day returns.</p>
+      <div class="hero__trust">
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold)"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <span>4.9 / 5 rating</span>
+        </div>
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold)"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          <span>12,000+ customers</span>
+        </div>
+        <div class="hero__trust-item">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold)"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <span>Ships to 48+ countries</span>
+        </div>
+      </div>
       <div class="hero__cta">
         <a href="shop.html" class="btn btn--gold">Shop the Drop</a>
-        <a href="about.html" class="btn btn--white">Our Story</a>
+        <a href="#bestsellers" class="btn btn--white">See Bestsellers</a>
       </div>
     </div>
   </div>
@@ -67,12 +95,12 @@
 <!-- MARQUEE -->
 <div class="marquee-strip" aria-hidden="true">
   <div class="marquee-track">
-    <span>New Drop SS26</span><span>✦</span><span>Free Shipping €150+</span><span>✦</span>
-    <span>Premium Streetwear</span><span>✦</span><span>ZL — Zen Luxury</span><span>✦</span>
-    <span>New Drop SS26</span><span>✦</span><span>Free Shipping €150+</span><span>✦</span>
-    <span>Premium Streetwear</span><span>✦</span><span>ZL — Zen Luxury</span><span>✦</span>
-    <span>New Drop SS26</span><span>✦</span><span>Free Shipping €150+</span><span>✦</span>
-    <span>Premium Streetwear</span><span>✦</span><span>ZL — Zen Luxury</span><span>✦</span>
+    <span>SS26 Drop · Limited 500 Pieces</span><span>✦</span><span>Free Shipping €150+</span><span>✦</span>
+    <span>iDEAL · PayPal · Visa · Mastercard</span><span>✦</span><span>30-Day Returns</span><span>✦</span>
+    <span>Ships to 48+ Countries</span><span>✦</span><span>4.9 ★ Rated</span><span>✦</span>
+    <span>SS26 Drop · Limited 500 Pieces</span><span>✦</span><span>Free Shipping €150+</span><span>✦</span>
+    <span>iDEAL · PayPal · Visa · Mastercard</span><span>✦</span><span>30-Day Returns</span><span>✦</span>
+    <span>Ships to 48+ Countries</span><span>✦</span><span>4.9 ★ Rated</span><span>✦</span>
   </div>
 </div>
 
@@ -86,7 +114,7 @@
       </div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-        <div class="trust-item__text"><p>Secure Checkout</p><p>256-bit SSL encryption</p></div>
+        <div class="trust-item__text"><p>Secure Checkout</p><p>PayPal · iDEAL · All cards</p></div>
       </div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M23 7l-7 5-7-5M1 7l7 5 7-5M1 7v10a1 1 0 001 1h20a1 1 0 001-1V7M1 7l11 8 11-8"/></svg>
@@ -94,11 +122,119 @@
       </div>
       <div class="trust-item">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
-        <div class="trust-item__text"><p>24/7 Support</p><p>We're always here</p></div>
+        <div class="trust-item__text"><p>Fast Delivery</p><p>Express 2–3 business days</p></div>
       </div>
     </div>
   </div>
 </div>
+
+<!-- BESTSELLERS -->
+<section class="bestsellers" id="bestsellers">
+  <div class="container">
+    <div class="section__header">
+      <p class="gold uppercase" style="font-size:.62rem;letter-spacing:.26em;">Most Wanted</p>
+      <h2>Bestsellers</h2>
+      <div class="divider"></div>
+      <p>The pieces our community keeps coming back for — proven quality, every drop.</p>
+    </div>
+    <div class="bestsellers__grid">
+
+      <!-- #1 -->
+      <div class="bestseller-card">
+        <div class="bestseller-num">#1</div>
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=600&q=80" alt="ZL Oversized Hoodie" loading="lazy"/>
+          <span class="product-card__badge">Best Seller</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Oversized Hoodie',185,'https://images.unsplash.com/photo-1556821840-3a63f15732ce?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Hoodies</p>
+          <h4 class="product-card__name">ZL Oversized Hoodie</h4>
+          <p class="bestseller-benefit">Heavy-weight premium cotton · Gold embroidery · Oversized fit</p>
+          <p class="product-card__price">€185</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+          </div>
+          <p class="urgency-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Only 14 left in this drop
+          </p>
+        </div>
+      </div>
+
+      <!-- #2 -->
+      <div class="bestseller-card">
+        <div class="bestseller-num">#2</div>
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80" alt="ZL Satin Bomber" loading="lazy"/>
+          <span class="product-card__badge">Limited</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Satin Bomber',320,'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Outerwear</p>
+          <h4 class="product-card__name">ZL Satin Bomber</h4>
+          <p class="bestseller-benefit">Japanese satin shell · ZL gold patch · Satin lining</p>
+          <p class="product-card__price">€320</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+          </div>
+          <p class="urgency-tag urgency-tag--hot">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            Only 6 left — selling fast
+          </p>
+        </div>
+      </div>
+
+      <!-- #3 -->
+      <div class="bestseller-card">
+        <div class="bestseller-num">#3</div>
+        <div class="product-card__img-wrap">
+          <img class="product-card__img" src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=600&q=80" alt="ZL Gold Script Tee" loading="lazy"/>
+          <span class="product-card__badge">New</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add" onclick="addToCart('ZL Gold Script Tee',95,'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=200&q=60',getSelectedSize(this))">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Tees</p>
+          <h4 class="product-card__name">ZL Gold Script Tee</h4>
+          <p class="bestseller-benefit">400gsm heavyweight cotton · Gold foil script · Unisex cut</p>
+          <p class="product-card__price">€95</p>
+          <div class="product-card__sizes">
+            <button class="size-chip" data-size="S">S</button>
+            <button class="size-chip selected" data-size="M">M</button>
+            <button class="size-chip" data-size="L">L</button>
+            <button class="size-chip" data-size="XL">XL</button>
+            <button class="size-chip" data-size="XXL">XXL</button>
+          </div>
+          <p class="urgency-tag">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:12px;height:12px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+            22 sold this week
+          </p>
+        </div>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:3rem;">
+      <a href="shop.html" class="btn btn--outline">View All 12 Products</a>
+    </div>
+  </div>
+</section>
 
 <!-- COLLECTIONS -->
 <section class="collections">
@@ -372,7 +508,12 @@
           <p class="footer__brand-logo-text">ZEN <span>LUXURY</span></p>
         </div>
         <p class="footer__brand-desc">Premium streetwear built with intention. Worn by those who move in silence and let their presence speak.</p>
-        <div class="footer__socials">
+        <div class="footer__contact-mini">
+          <p>Delft, Netherlands</p>
+          <p><a href="tel:+31683491518">+31 6 83 49 15 18</a></p>
+          <p><a href="mailto:J.ovk.zakelijk@gmail.com">J.ovk.zakelijk@gmail.com</a></p>
+        </div>
+        <div class="footer__socials" style="margin-top:1rem;">
           <a href="#" class="footer__social" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg></a>
           <a href="#" class="footer__social" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.67a8.18 8.18 0 004.78 1.52V6.7a4.85 4.85 0 01-1.01-.01z"/></svg></a>
           <a href="#" class="footer__social" aria-label="Twitter/X"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -383,8 +524,7 @@
           <span class="card-badge">MC</span>
           <span class="card-badge">Amex</span>
           <span class="card-badge">PayPal</span>
-          <span class="card-badge">Apple Pay</span>
-          <span class="card-badge">Klarna</span>
+          <span class="card-badge" style="background:rgba(201,168,76,.1);border-color:var(--gold);color:var(--gold);font-weight:700;">iDEAL</span>
         </div>
       </div>
       <div>
@@ -403,27 +543,26 @@
         <ul class="footer__links">
           <li><a href="about.html">About ZL</a></li>
           <li><a href="contact.html">Contact</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Sustainability</a></li>
+          <li><a href="faq.html">FAQ</a></li>
         </ul>
       </div>
       <div>
         <p class="footer__heading">Support</p>
         <ul class="footer__links">
-          <li><a href="#">Shipping &amp; Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">FAQ</a></li>
+          <li><a href="shipping.html">Shipping &amp; Returns</a></li>
+          <li><a href="faq.html#size-guide">Size Guide</a></li>
+          <li><a href="faq.html#track">Track Order</a></li>
+          <li><a href="faq.html">FAQ</a></li>
           <li><a href="contact.html">Customer Care</a></li>
         </ul>
       </div>
     </div>
     <div class="footer__bottom">
-      <p>© 2026 Zen Luxury · ZL. All rights reserved.</p>
+      <p>© 2026 Zen Luxury Worldwide · ZL. All rights reserved.</p>
       <div class="footer__bottom-links">
         <a href="#">Privacy Policy</a>
         <a href="#">Terms of Use</a>
-        <a href="#">Cookie Settings</a>
+        <a href="faq.html">FAQ</a>
       </div>
     </div>
   </div>

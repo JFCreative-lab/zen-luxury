@@ -120,7 +120,60 @@ function updatePayPalSection(hasItems) {
 }
 
 // ─────────────────────────────────────
-// PAYPAL
+// SHARED ORDER HANDLERS (used by PayPal + iDEAL)
+// ─────────────────────────────────────
+function buildOrder(actions) {
+  const cart  = getCart();
+  const total = getTotal();
+  return actions.order.create({
+    purchase_units: [{
+      reference_id: 'ZL-ORDER',
+      description:  'ZL · Zen Luxury Order',
+      amount: {
+        value:         total.toFixed(2),
+        currency_code: 'EUR',
+        breakdown: {
+          item_total: { value: (getSubtotal() * (1 - discount)).toFixed(2), currency_code: 'EUR' },
+          tax_total:  { value: ((getSubtotal() * (1 - discount)) * TAX_RATE).toFixed(2), currency_code: 'EUR' },
+          shipping:   { value: shippingCost.toFixed(2), currency_code: 'EUR' },
+        },
+      },
+      items: cart.map(item => ({
+        name:        item.name,
+        unit_amount: { value: item.price.toFixed(2), currency_code: 'EUR' },
+        quantity:    String(item.qty),
+        description: `Size: ${item.variant || 'One Size'}`,
+        category:    'PHYSICAL_GOODS',
+      })),
+      shipping: {
+        address: {
+          address_line_1: document.getElementById('address')?.value   ?? '',
+          address_line_2: document.getElementById('address2')?.value  ?? '',
+          admin_area_2:   document.getElementById('city')?.value      ?? '',
+          admin_area_1:   document.getElementById('state')?.value     ?? '',
+          postal_code:    document.getElementById('zip')?.value       ?? '',
+          country_code:   document.getElementById('country')?.value   ?? 'NL',
+        },
+      },
+    }],
+    application_context: { brand_name: 'Zen Luxury Worldwide', user_action: 'PAY_NOW' },
+  });
+}
+
+function handleApprove(data, actions) {
+  return actions.order.capture().then(details => {
+    saveOrder(details);
+    localStorage.removeItem('zl-cart');
+    showToast('Payment confirmed — thank you!');
+    setTimeout(() => { window.location.href = 'order-confirm.html'; }, 800);
+  });
+}
+
+function handleCancel()    { showToast('Payment cancelled. Your cart is still saved.'); }
+function handleError(err)  { console.error('Payment error:', err); showToast('Payment error. Please try again or contact support.'); }
+
+// ─────────────────────────────────────
+// PAYPAL + iDEAL BUTTONS
 // ─────────────────────────────────────
 function initPayPal() {
   if (paypalInited) return;
@@ -130,74 +183,41 @@ function initPayPal() {
   const loadingMsg = document.getElementById('paypal-loading-msg');
   if (!container) return;
 
-  if (typeof paypal === 'undefined') return;   // SDK not ready yet — retry called externally
+  if (typeof paypal === 'undefined') return;
 
   if (loadingMsg) loadingMsg.style.display = 'none';
   paypalInited = true;
 
+  // ── PayPal button ──
   paypal.Buttons({
     style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 },
-
-    onClick: (data, actions) => {
-      if (!validateForm()) return actions.reject();
-      return actions.resolve();
-    },
-
-    createOrder: (data, actions) => {
-      const cart  = getCart();
-      const total = getTotal();
-      return actions.order.create({
-        purchase_units: [{
-          reference_id: 'ZL-ORDER',
-          description:  'ZL · Zen Luxury Order',
-          amount: {
-            value:         total.toFixed(2),
-            currency_code: 'EUR',
-            breakdown: {
-              item_total: { value: (getSubtotal() * (1 - discount)).toFixed(2), currency_code: 'EUR' },
-              tax_total:  { value: ((getSubtotal() * (1 - discount)) * TAX_RATE).toFixed(2), currency_code: 'EUR' },
-              shipping:   { value: shippingCost.toFixed(2), currency_code: 'EUR' },
-            },
-          },
-          items: cart.map(item => ({
-            name:        item.name,
-            unit_amount: { value: item.price.toFixed(2), currency_code: 'EUR' },
-            quantity:    String(item.qty),
-            description: `Size: ${item.variant || 'One Size'}`,
-            category:    'PHYSICAL_GOODS',
-          })),
-          shipping: {
-            address: {
-              address_line_1: document.getElementById('address')?.value   ?? '',
-              address_line_2: document.getElementById('address2')?.value  ?? '',
-              admin_area_2:   document.getElementById('city')?.value      ?? '',
-              admin_area_1:   document.getElementById('state')?.value     ?? '',
-              postal_code:    document.getElementById('zip')?.value       ?? '',
-              country_code:   document.getElementById('country')?.value   ?? 'US',
-            },
-          },
-        }],
-        application_context: { brand_name: 'Zen Luxury Worldwide', user_action: 'PAY_NOW' },
-      });
-    },
-
-    onApprove: (data, actions) => {
-      return actions.order.capture().then(details => {
-        saveOrder(details);
-        localStorage.removeItem('zl-cart');
-        showToast('Payment confirmed — thank you!');
-        setTimeout(() => { window.location.href = 'order-confirm.html'; }, 800);
-      });
-    },
-
-    onCancel: () => { showToast('Payment cancelled. Your cart is still saved.'); },
-
-    onError: err => {
-      console.error('PayPal error:', err);
-      showToast('Payment error. Please try again or contact support.');
-    },
-
+    onClick:      (data, actions) => { if (!validateForm()) return actions.reject(); return actions.resolve(); },
+    createOrder:  (data, actions) => buildOrder(actions),
+    onApprove:    handleApprove,
+    onCancel:     handleCancel,
+    onError:      handleError,
   }).render('#paypal-button-container');
+
+  // ── iDEAL button — explicit so it always shows for NL customers ──
+  const idealContainer = document.getElementById('ideal-button-container');
+  if (idealContainer && paypal.FUNDING) {
+    try {
+      paypal.Buttons({
+        fundingSource: paypal.FUNDING.IDEAL,
+        style:        { height: 48, shape: 'rect' },
+        onClick:      (data, actions) => { if (!validateForm()) return actions.reject(); return actions.resolve(); },
+        createOrder:  (data, actions) => buildOrder(actions),
+        onApprove:    handleApprove,
+        onCancel:     handleCancel,
+        onError:      handleError,
+      }).render('#ideal-button-container');
+    } catch (e) {
+      // iDEAL not available in this PayPal account/region — hide the divider
+      const divider = idealContainer.previousElementSibling;
+      if (divider) divider.style.display = 'none';
+      idealContainer.style.display = 'none';
+    }
+  }
 }
 
 // ─────────────────────────────────────

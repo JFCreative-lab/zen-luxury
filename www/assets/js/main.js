@@ -292,6 +292,93 @@ document.querySelector('.contact-form')?.addEventListener('submit', function(e) 
 });
 
 /* ─────────────────────────────────────
+   PRODUCT ENRICHMENT
+   Adds short descriptions + luxury urgency tags to product cards.
+───────────────────────────────────── */
+const PRODUCT_META = {
+  'ZL Oversized Hoodie': {
+    desc:  '420gsm heavyweight cotton · Gold embroidery · Relaxed silhouette',
+    stock: 'Only 14 left in this drop',
+  },
+  'ZL Gold Logo Hoodie': {
+    desc:  'Chenille ZL logo on chest · 400gsm French terry · Limited production',
+    stock: 'Only 8 left · Limited batch',
+    hot:   true,
+  },
+  'ZL Gold Script Tee': {
+    desc:  '400gsm ring-spun cotton · Gold foil script · Unisex relaxed fit',
+    stock: '22 sold this week',
+  },
+  'ZL Essential Tee': {
+    desc:  '350gsm premium cotton · Minimal ZL branding · Everyday essential',
+    stock: 'In stock · Ships same day',
+  },
+  'ZL Cargo Pants': {
+    desc:  'Multi-pocket utility design · French terry · Solid metal hardware',
+    stock: 'Only 11 left at this price',
+    hot:   true,
+  },
+  'ZL Track Pants': {
+    desc:  'Signature ZL side stripe · Tapered fit · Elastic waistband',
+    stock: 'Most popular this week',
+  },
+  'ZL Satin Bomber': {
+    desc:  'Japanese satin shell · Full satin lining · Embroidered ZL patch',
+    stock: 'Only 6 left — selling fast',
+    hot:   true,
+  },
+  'ZL Quilted Puffer': {
+    desc:  'Japanese ripstop shell · Down-alternative fill · Structured puffer panels',
+    stock: 'Last 9 units this season',
+  },
+  'ZL Snapback Cap': {
+    desc:  '6-panel structured cap · ZL gold embroidery · Adjustable snapback',
+    stock: 'Ships in 24 hours',
+  },
+  'ZL Gold Beanie': {
+    desc:  'Merino wool blend · Minimal ZL patch · Ribbed fold cuff',
+    stock: 'Bestselling accessory',
+  },
+  'ZL Relaxed Tee': {
+    desc:  'Classic oversized drop · Faded-effect wash · Unisex cut',
+    stock: 'Final stock · No restock',
+    hot:   true,
+  },
+  'ZL Slim Jogger': {
+    desc:  'Tapered slim leg · 300gsm French terry · Side zip pockets',
+    stock: 'Final units available',
+  },
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll('.product-card').forEach(card => {
+    const nameEl = card.querySelector('.product-card__name');
+    const name   = nameEl?.textContent.trim();
+    const meta   = name && PRODUCT_META[name];
+    if (!meta) return;
+
+    const body   = card.querySelector('.product-card__body');
+    const priceEl = card.querySelector('.product-card__price');
+    if (!body || !priceEl) return;
+
+    // Description
+    const descEl = document.createElement('p');
+    descEl.className = 'product-card__desc';
+    descEl.textContent = meta.desc;
+    body.insertBefore(descEl, priceEl);
+
+    // Urgency tag
+    const sizesEl = card.querySelector('.product-card__sizes');
+    if (sizesEl && meta.stock) {
+      const urgEl = document.createElement('p');
+      urgEl.className = 'urgency-tag' + (meta.hot ? ' urgency-tag--hot' : '');
+      urgEl.innerHTML = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="width:11px;height:11px"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> ${meta.stock}`;
+      sizesEl.after(urgEl);
+    }
+  });
+});
+
+/* ─────────────────────────────────────
    INIT
 ───────────────────────────────────── */
 updateCartUI();
