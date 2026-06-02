@@ -1,19 +1,15 @@
 name: Deploy Zen Luxury to GitHub Pages
 
 on:
-  # Deploy on every push to the main branch
   push:
     branches: [zen-luxury]
-  # Allow manual triggering from the Actions tab
   workflow_dispatch:
 
-# Grant the GITHUB_TOKEN the permissions needed for Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment; cancel in-progress runs
 concurrency:
   group: pages
   cancel-in-progress: false
@@ -32,13 +28,15 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          # Auto-enable Pages with GitHub Actions as the source
+          enablement: true
 
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Publish only the static site directory
           path: ./www
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
