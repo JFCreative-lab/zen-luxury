@@ -1,2 +1,3 @@
 config:
-  aws:region: us-east-1
+  zen-luxury:githubOrg: JFCreative-lab
+  zen-luxury:githubRepo: zen-luxury
