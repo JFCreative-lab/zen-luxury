@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Zen Luxury — Elevated clothing for the discerning individual. Timeless Black & Gold editorial fashion."/>
+  <title>Zen Luxury — Elevated Fashion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>"/>
+</head>
+<body>
+
+<!-- ══════════════ NAVIGATION ══════════════ -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo">ZEN <span>LUXURY</span></a>
+
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+
+      <div class="nav__actions">
+        <!-- Search -->
+        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Search">
+          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
+        </svg>
+        <!-- Cart -->
+        <div class="nav__cart-count" role="button" aria-label="Open cart" tabindex="0">
+          <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/>
+          </svg>
+          <span class="badge">0</span>
+        </div>
+        <!-- Hamburger -->
+        <button class="nav__hamburger" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="nav__mobile">
+  <a href="index.html">Home</a>
+  <a href="shop.html">Shop</a>
+  <a href="about.html">About</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- ══════════════ HERO ══════════════ -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="container">
+    <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span>New Collection — Summer 2026</span>
+      </div>
+      <h1>Where <em>Silence</em><br/>Becomes Style</h1>
+      <p>Crafted for those who speak through presence. Each piece a meditation — refined, intentional, eternal.</p>
+      <div class="hero__cta">
+        <a href="shop.html" class="btn btn--gold">Explore Collection</a>
+        <a href="about.html" class="btn btn--white">Our Story</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero__scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M12 5v14M5 12l7 7 7-7"/>
+    </svg>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ══════════════ MARQUEE ══════════════ -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-track">
+    <span>New Arrivals</span><span>✦</span>
+    <span>Summer Collection</span><span>✦</span>
+    <span>Crafted in Milan</span><span>✦</span>
+    <span>Free Shipping Over $250</span><span>✦</span>
+    <span>New Arrivals</span><span>✦</span>
+    <span>Summer Collection</span><span>✦</span>
+    <span>Crafted in Milan</span><span>✦</span>
+    <span>Free Shipping Over $250</span><span>✦</span>
+    <span>New Arrivals</span><span>✦</span>
+    <span>Summer Collection</span><span>✦</span>
+    <span>Crafted in Milan</span><span>✦</span>
+    <span>Free Shipping Over $250</span><span>✦</span>
+  </div>
+</div>
+
+<!-- ══════════════ COLLECTIONS ══════════════ -->
+<section class="collections">
+  <div class="container">
+    <div class="section__header">
+      <p class="gold uppercase" style="font-size:.65rem;letter-spacing:.25em;">Curated Selections</p>
+      <h2>Our Collections</h2>
+      <div class="divider"></div>
+      <p>Three worlds of expression — each a chapter in the Zen Luxury story.</p>
+    </div>
+
+    <div class="collections__grid">
+      <!-- Large card -->
+      <div class="collection-card collection-card--large">
+        <img class="collection-card__img"
+             src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=900&q=80"
+             alt="The Obsidian Collection" loading="lazy"/>
+        <div class="collection-card__overlay">
+          <div class="collection-card__body">
+            <span class="collection-card__tag">SS26</span>
+            <h3 class="collection-card__title">The Obsidian<br/>Collection</h3>
+            <a href="shop.html" class="collection-card__link">
+              Discover →
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Top right -->
+      <div class="collection-card">
+        <img class="collection-card__img"
+             src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?w=700&q=80"
+             alt="Gilded Evenings" loading="lazy"/>
+        <div class="collection-card__overlay">
+          <div class="collection-card__body">
+            <span class="collection-card__tag">Evening</span>
+            <h3 class="collection-card__title">Gilded Evenings</h3>
+            <a href="shop.html" class="collection-card__link">Discover →</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom right -->
+      <div class="collection-card">
+        <img class="collection-card__img"
+             src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=700&q=80"
+             alt="Urban Serenity" loading="lazy"/>
+        <div class="collection-card__overlay">
+          <div class="collection-card__body">
+            <span class="collection-card__tag">Everyday</span>
+            <h3 class="collection-card__title">Urban Serenity</h3>
+            <a href="shop.html" class="collection-card__link">Discover →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ FEATURED PRODUCTS ══════════════ -->
+<section style="background:var(--black);">
+  <div class="container">
+    <div class="section__header">
+      <p class="gold uppercase" style="font-size:.65rem;letter-spacing:.25em;">Hand-Picked</p>
+      <h2>New Arrivals</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="products__grid">
+
+      <div class="product-card" data-category="women" data-price="890">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img"
+               src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80"
+               alt="Noir Silk Dress" loading="lazy"/>
+          <span class="product-card__badge">New</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add"
+              onclick="addToCart('Noir Silk Dress', 890, 'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&q=60', 'S')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Women</p>
+          <h4 class="product-card__name">Noir Silk Dress</h4>
+          <p class="product-card__price">$890</p>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="men" data-price="620">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img"
+               src="https://images.unsplash.com/photo-1617137968427-85924c800a22?w=600&q=80"
+               alt="Obsidian Blazer" loading="lazy"/>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add"
+              onclick="addToCart('Obsidian Blazer', 620, 'https://images.unsplash.com/photo-1617137968427-85924c800a22?w=200&q=60', 'M')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Men</p>
+          <h4 class="product-card__name">Obsidian Blazer</h4>
+          <p class="product-card__price">$620</p>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="women" data-price="340">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img"
+               src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=600&q=80"
+               alt="Gold Accent Blouse" loading="lazy"/>
+          <span class="product-card__badge" style="background:var(--black);color:var(--gold);border:1px solid var(--gold);">−20%</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add"
+              onclick="addToCart('Gold Accent Blouse', 340, 'https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=200&q=60', 'M')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Women</p>
+          <h4 class="product-card__name">Gold Accent Blouse</h4>
+          <p class="product-card__price"><s>$425</s> $340</p>
+        </div>
+      </div>
+
+      <div class="product-card" data-category="accessories" data-price="280">
+        <div class="product-card__img-wrap">
+          <img class="product-card__img"
+               src="https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=600&q=80"
+               alt="Zenith Leather Bag" loading="lazy"/>
+          <span class="product-card__badge">New</span>
+          <div class="product-card__actions">
+            <button class="product-card__action-btn" title="Quick Add"
+              onclick="addToCart('Zenith Leather Bag', 280, 'https://images.unsplash.com/photo-1548036328-c9fa89d128fa?w=200&q=60', 'One Size')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+            </button>
+            <button class="product-card__action-btn" title="Wishlist">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            </button>
+          </div>
+        </div>
+        <div class="product-card__body">
+          <p class="product-card__category">Accessories</p>
+          <h4 class="product-card__name">Zenith Leather Bag</h4>
+          <p class="product-card__price">$280</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center;margin-top:3.5rem;">
+      <a href="shop.html" class="btn btn--outline">View All Products</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ BRAND BANNER ══════════════ -->
+<div class="brand-banner">
+  <div class="brand-banner__bg"></div>
+  <div class="container">
+    <div class="brand-banner__content">
+      <p class="gold uppercase" style="font-size:.65rem;letter-spacing:.25em;margin-bottom:1rem;">Our Philosophy</p>
+      <h2>Luxury is a<br/><em>state of mind</em></h2>
+      <div class="divider divider--left"></div>
+      <p>We believe true luxury is not about excess — it is about intention. Every thread, every seam, every silhouette is the result of deliberate craft and quiet confidence.</p>
+      <a href="about.html" class="btn btn--gold">Discover Our World</a>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ STATS ══════════════ -->
+<div class="stats">
+  <div class="container">
+    <div class="stats__grid">
+      <div class="stat-item">
+        <p class="stat-item__number">12</p>
+        <p class="stat-item__label">Years of Craft</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-item__number">48+</p>
+        <p class="stat-item__label">Countries Shipped</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-item__number">3k</p>
+        <p class="stat-item__label">Pieces per Season</p>
+      </div>
+      <div class="stat-item">
+        <p class="stat-item__number">100%</p>
+        <p class="stat-item__label">Sustainable Materials</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ TESTIMONIALS ══════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section__header">
+      <p class="gold uppercase" style="font-size:.65rem;letter-spacing:.25em;">Client Stories</p>
+      <h2>What They Say</h2>
+      <div class="divider"></div>
+    </div>
+
+    <div class="testimonials__grid">
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-card__text">"The silk dress arrived in the most exquisite packaging I've ever received. It fits like a second skin — effortlessly elegant."</p>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=47" alt="Sofia M."/>
+          <div>
+            <p class="testimonial-card__name">Sofia M.</p>
+            <p class="testimonial-card__location">Milan, Italy</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-card__text">"I've worn the Obsidian Blazer to three different events now. Each time someone asks where it's from. Worth every penny."</p>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=12" alt="James T."/>
+          <div>
+            <p class="testimonial-card__name">James T.</p>
+            <p class="testimonial-card__location">London, UK</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <div class="testimonial-card__stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="testimonial-card__text">"Zen Luxury redefined what I expect from a fashion brand. The quality is impeccable, the service is even better."</p>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://i.pravatar.cc/80?img=31" alt="Aiko N."/>
+          <div>
+            <p class="testimonial-card__name">Aiko N.</p>
+            <p class="testimonial-card__location">Tokyo, Japan</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════ NEWSLETTER ══════════════ -->
+<div class="newsletter">
+  <div class="container">
+    <div class="newsletter__inner">
+      <div class="newsletter__text">
+        <h3>Join the Circle</h3>
+        <p>Early access to collections, private events, and the Zen Luxury world.</p>
+      </div>
+      <form class="newsletter__form" novalidate>
+        <input type="email" class="newsletter__input" placeholder="Your email address" required/>
+        <button type="submit" class="btn btn--gold">Subscribe</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════ FOOTER ══════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid">
+      <div>
+        <p class="footer__brand-logo">ZEN <span>LUXURY</span></p>
+        <p class="footer__brand-desc">Elevated fashion rooted in mindful craft. Designed for those who appreciate the silence between the notes.</p>
+        <div class="footer__socials">
+          <a href="#" class="footer__social" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><circle cx="17.5" cy="6.5" r=".5" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="Pinterest">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C6.48 2 2 6.48 2 12c0 4.24 2.65 7.86 6.39 9.29-.09-.78-.17-1.98.03-2.83.19-.77 1.27-5.38 1.27-5.38s-.32-.65-.32-1.61c0-1.51.88-2.64 1.97-2.64.93 0 1.38.7 1.38 1.53 0 .93-.6 2.33-.9 3.63-.26 1.08.53 1.96 1.59 1.96 1.91 0 3.19-2.46 3.19-5.37 0-2.22-1.49-3.88-4.19-3.88-3.05 0-4.93 2.27-4.93 4.8 0 .87.26 1.49.66 1.96.18.22.21.3.14.55-.05.18-.16.61-.2.78-.07.25-.27.34-.5.25-1.4-.58-2.06-2.12-2.06-3.85 0-2.85 2.41-6.27 7.2-6.27 3.86 0 6.41 2.8 6.41 5.81 0 3.97-2.2 6.95-5.43 6.95-1.09 0-2.11-.58-2.46-1.23l-.67 2.53c-.24.93-.88 2.1-1.31 2.81.99.3 2.03.47 3.11.47 5.52 0 10-4.48 10-10S17.52 2 12 2z"/></svg>
+          </a>
+          <a href="#" class="footer__social" aria-label="Twitter/X">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <p class="footer__heading">Shop</p>
+        <ul class="footer__links">
+          <li><a href="shop.html">New Arrivals</a></li>
+          <li><a href="shop.html">Women</a></li>
+          <li><a href="shop.html">Men</a></li>
+          <li><a href="shop.html">Accessories</a></li>
+          <li><a href="shop.html">Sale</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__heading">Company</p>
+        <ul class="footer__links">
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html">Sustainability</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="#">Press</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="footer__heading">Support</p>
+        <ul class="footer__links">
+          <li><a href="#">Shipping & Returns</a></li>
+          <li><a href="#">Size Guide</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Order Tracking</a></li>
+          <li><a href="contact.html">Customer Care</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <p>© 2026 Zen Luxury. All rights reserved. Crafted with intention.</p>
+      <div class="footer__bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
+        <a href="#">Cookie Settings</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ══════════════ CART DRAWER ══════════════ -->
+<div class="cart-overlay"></div>
+<aside class="cart-drawer" role="dialog" aria-label="Shopping cart">
+  <div class="cart-drawer__header">
+    <h3 class="cart-drawer__title">Your Cart</h3>
+    <button class="cart-drawer__close" aria-label="Close cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-drawer__body"></div>
+  <div class="cart-drawer__footer">
+    <div class="cart-drawer__total">
+      <span>Total</span>
+      <strong>$0.00</strong>
+    </div>
+    <button class="btn btn--gold cart-checkout-btn" style="width:100%;text-align:center;">Proceed to Checkout</button>
+  </div>
+</aside>
+
+<!-- Toast -->
+<div class="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <span class="toast__message"></span>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
