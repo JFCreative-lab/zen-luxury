@@ -100,22 +100,28 @@ function renderOrderSummary() {
 }
 
 // ─────────────────────────────────────
-// PAYPAL SECTION STATE
+// PAYMENT SECTION STATE
 // ─────────────────────────────────────
 function updatePayPalSection(hasItems) {
   const loadingMsg  = document.getElementById('paypal-loading-msg');
   const emptyMsg    = document.getElementById('paypal-empty-msg');
-  const btnWrap     = document.getElementById('paypal-checkout-wrap');
+  const payWrap     = document.getElementById('paypal-checkout-wrap');
+  const idealWrap   = document.getElementById('ideal-checkout-wrap');
+  const separator   = document.querySelector('.pay-separator');
 
   if (!hasItems) {
     if (loadingMsg) loadingMsg.style.display = 'none';
     if (emptyMsg)   emptyMsg.style.display   = 'block';
-    if (btnWrap)    btnWrap.style.display     = 'none';
+    if (payWrap)    payWrap.style.display     = 'none';
+    if (idealWrap)  idealWrap.style.display   = 'none';
+    if (separator)  separator.style.display   = 'none';
     return;
   }
 
-  if (emptyMsg) emptyMsg.style.display = 'none';
-  if (btnWrap)  btnWrap.style.display  = '';
+  if (emptyMsg)  emptyMsg.style.display  = 'none';
+  if (payWrap)   payWrap.style.display   = '';
+  if (idealWrap) idealWrap.style.display = '';
+  if (separator) separator.style.display = '';
   initPayPal();
 }
 

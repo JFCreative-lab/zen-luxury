@@ -8,13 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="assets/css/style.css"/>
-  <!-- Google Analytics 4 — replace G-XXXXXXXXXX with your Measurement ID -->
-  <!-- Get your ID: analytics.google.com → Admin → Data Streams → Web → Measurement ID -->
-  <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
-  <!-- Microsoft Clarity — replace XXXXXXXXXX with your Project ID -->
-  <!-- Get your ID: clarity.microsoft.com → New Project → Web → Copy Tracking Code -->
-  <!-- <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","XXXXXXXXXX");</script> -->
+
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 
   <!-- PayPal Live — configured and active | iDEAL enabled for NL customers -->
@@ -162,39 +156,65 @@
         <div class="checkout-section">
           <h3 class="checkout-section__title">Payment</h3>
 
-          <!-- PayPal intro -->
-          <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.14);padding:1.1rem 1.3rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem;">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:20px;height:20px;color:var(--gold);flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <p style="font-size:.75rem;color:var(--white-soft);line-height:1.6;margin:0;">
-              <strong style="color:var(--white);">All major cards &amp; iDEAL accepted</strong> — pay with Visa, Mastercard, Amex, Discover, PayPal balance, or <strong style="color:var(--gold);">iDEAL</strong> (ING, ABN AMRO, Rabobank and more). Secured by PayPal.
+          <!-- ── PAYPAL SECTION ── -->
+          <div class="pay-block" id="paypal-checkout-wrap">
+            <div class="pay-block__header">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:18px;height:18px;color:#003087;flex-shrink:0;"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+              <span class="pay-block__label">PayPal <small>· Visa · Mastercard · Amex · Venmo</small></span>
+            </div>
+            <div id="paypal-button-container" style="min-height:50px;margin-top:.8rem;"></div>
+            <p id="paypal-loading-msg" style="color:var(--grey);font-size:.72rem;padding:.4rem 0 0;">Loading secure payment…</p>
+          </div>
+
+          <!-- ── SEPARATOR ── -->
+          <div class="pay-separator"><span>of betaal met</span></div>
+
+          <!-- ── iDEAL SECTION ── -->
+          <div class="pay-block ideal-block" id="ideal-checkout-wrap">
+
+            <!-- iDEAL header -->
+            <div class="pay-block__header">
+              <!-- iDEAL logo mark -->
+              <div class="ideal-logo" aria-label="iDEAL">
+                <svg viewBox="0 0 54 28" xmlns="http://www.w3.org/2000/svg" style="height:28px;width:auto;">
+                  <rect width="54" height="28" rx="4" fill="#CC0066"/>
+                  <text x="5" y="20" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="white" letter-spacing="-0.5">i<tspan fill="white" font-style="normal">D</tspan>EAL</text>
+                  <polyline points="44,7 48,14 40,22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <span class="pay-block__label">Betaal direct via uw bank</span>
+            </div>
+
+            <!-- Bank list — visual trust signal -->
+            <div class="ideal-banks">
+              <span class="ideal-bank">ABN AMRO</span>
+              <span class="ideal-bank">ING</span>
+              <span class="ideal-bank">Rabobank</span>
+              <span class="ideal-bank">SNS</span>
+              <span class="ideal-bank">ASN</span>
+              <span class="ideal-bank">Triodos</span>
+              <span class="ideal-bank">Knab</span>
+              <span class="ideal-bank">Regiobank</span>
+            </div>
+
+            <!-- PayPal renders the actual iDEAL button here -->
+            <div id="ideal-button-container" style="min-height:46px;margin-top:.8rem;"></div>
+
+            <p style="font-size:.65rem;color:var(--grey);margin-top:.5rem;text-align:center;">
+              U wordt doorgestuurd naar uw bank om de betaling te voltooien.
             </p>
           </div>
 
-          <!-- PayPal button area -->
-          <div class="paypal-btn-wrap" id="paypal-checkout-wrap">
-            <div id="paypal-button-container" style="min-height:55px;"></div>
-
-            <!-- iDEAL explicit button — always rendered for NL customers -->
-            <div style="margin-top:.5rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.3rem;">
-              <div style="flex:1;height:1px;background:rgba(201,168,76,.1);"></div>
-              <span style="font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--grey);">or pay with</span>
-              <div style="flex:1;height:1px;background:rgba(201,168,76,.1);"></div>
-            </div>
-            <div id="ideal-button-container" style="min-height:48px;"></div>
-
-            <p id="paypal-loading-msg" style="color:var(--grey);font-size:.75rem;padding:.5rem 0;">Loading secure payment…</p>
-          </div>
-
-          <!-- Shown when cart is empty -->
+          <!-- ── EMPTY CART MESSAGE ── -->
           <div id="paypal-empty-msg" style="display:none;padding:.9rem;background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.12);font-size:.78rem;color:var(--grey);text-align:center;">
-            Add items to your cart before proceeding to payment.
-            <a href="shop.html" style="color:var(--gold);display:block;margin-top:.5rem;">← Back to Shop</a>
+            Voeg producten toe aan uw winkelwagen om verder te gaan.
+            <a href="shop.html" style="color:var(--gold);display:block;margin-top:.5rem;">← Terug naar de winkel</a>
           </div>
 
-          <!-- Secure badges -->
+          <!-- ── SECURE BADGES ── -->
           <div class="secure-badge" style="margin-top:1.5rem;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>256-bit SSL · Payments secured by PayPal</span>
+            <span>256-bit SSL · Beveiligde betalingen via PayPal &amp; iDEAL</span>
           </div>
 
           <div class="accepted-cards" style="margin-top:.8rem;">
@@ -202,9 +222,8 @@
             <span class="card-badge">Visa</span>
             <span class="card-badge">Mastercard</span>
             <span class="card-badge">Amex</span>
-            <span class="card-badge">Discover</span>
-            <span class="card-badge" style="background:rgba(0,71,186,.12);border-color:rgba(0,71,186,.35);color:#4a90d9;">PayPal</span>
-            <span class="card-badge" style="background:rgba(201,168,76,.1);border-color:var(--gold);color:var(--gold);font-weight:700;">iDEAL</span>
+            <span class="card-badge" style="background:rgba(0,48,135,.12);border-color:rgba(0,48,135,.4);color:#003087;font-weight:700;">PayPal</span>
+            <span class="card-badge" style="background:rgba(204,0,102,.1);border-color:rgba(204,0,102,.4);color:#CC0066;font-weight:700;">iDEAL</span>
           </div>
         </div>
 

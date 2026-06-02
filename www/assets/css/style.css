@@ -865,6 +865,54 @@ label:has(.auth-forgot) { display:flex; justify-content:space-between; align-ite
 .footer__contact-mini a:hover { color:var(--gold); }
 
 /* ═══════════════════════════════════════
+   PAYMENT BLOCKS (checkout)
+═══════════════════════════════════════ */
+.pay-block {
+  background:var(--black-card);
+  border:1px solid rgba(201,168,76,.15);
+  border-radius:var(--radius);
+  padding:1.2rem 1.4rem;
+  margin-bottom:.3rem;
+}
+.pay-block__header { display:flex; align-items:center; gap:.75rem; }
+.pay-block__label  { font-size:.83rem; font-weight:500; color:var(--white); }
+.pay-block__label small { font-weight:300; color:var(--grey); font-size:.72rem; }
+
+/* Separator between PayPal and iDEAL */
+.pay-separator {
+  display:flex; align-items:center; gap:.8rem;
+  margin:.8rem 0;
+}
+.pay-separator::before, .pay-separator::after {
+  content:''; flex:1; height:1px; background:rgba(201,168,76,.1);
+}
+.pay-separator span {
+  font-size:.62rem; letter-spacing:.12em; text-transform:uppercase;
+  color:var(--grey); white-space:nowrap;
+}
+
+/* iDEAL block */
+.ideal-block { border-color:rgba(204,0,102,.25); }
+.ideal-block:hover { border-color:rgba(204,0,102,.45); }
+
+.ideal-logo { display:flex; align-items:center; }
+
+/* Dutch bank pills */
+.ideal-banks {
+  display:flex; flex-wrap:wrap; gap:.4rem;
+  margin-top:.9rem;
+}
+.ideal-bank {
+  font-size:.62rem; font-weight:600; letter-spacing:.05em;
+  padding:.25rem .6rem;
+  background:rgba(204,0,102,.06);
+  border:1px solid rgba(204,0,102,.2);
+  color:rgba(204,0,102,.9);
+  border-radius:3px;
+  white-space:nowrap;
+}
+
+/* ═══════════════════════════════════════
    BESTSELLERS RESPONSIVE
 ═══════════════════════════════════════ */
 @media(max-width:900px) { .bestsellers__grid { grid-template-columns:1fr 1fr; } }
