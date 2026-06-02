@@ -42,7 +42,7 @@ function getTotal() {
 }
 
 function fmt(n) {
-  return '$' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return '€' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 }
 
 // ─────────────────────────────────────
@@ -152,16 +152,16 @@ function initPayPal() {
           description:  'ZL · Zen Luxury Order',
           amount: {
             value:         total.toFixed(2),
-            currency_code: 'USD',
+            currency_code: 'EUR',
             breakdown: {
-              item_total: { value: (getSubtotal() * (1 - discount)).toFixed(2), currency_code: 'USD' },
-              tax_total:  { value: ((getSubtotal() * (1 - discount)) * TAX_RATE).toFixed(2), currency_code: 'USD' },
-              shipping:   { value: shippingCost.toFixed(2), currency_code: 'USD' },
+              item_total: { value: (getSubtotal() * (1 - discount)).toFixed(2), currency_code: 'EUR' },
+              tax_total:  { value: ((getSubtotal() * (1 - discount)) * TAX_RATE).toFixed(2), currency_code: 'EUR' },
+              shipping:   { value: shippingCost.toFixed(2), currency_code: 'EUR' },
             },
           },
           items: cart.map(item => ({
             name:        item.name,
-            unit_amount: { value: item.price.toFixed(2), currency_code: 'USD' },
+            unit_amount: { value: item.price.toFixed(2), currency_code: 'EUR' },
             quantity:    String(item.qty),
             description: `Size: ${item.variant || 'One Size'}`,
             category:    'PHYSICAL_GOODS',

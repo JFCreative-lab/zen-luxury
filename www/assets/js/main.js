@@ -93,7 +93,7 @@ function saveCart()  { localStorage.setItem('zl-cart', JSON.stringify(cart)); }
 function updateCartUI() {
   const count = cart.reduce((s, i) => s + i.qty, 0);
   const total = cart.reduce((s, i) => s + i.price * i.qty, 0);
-  const fmt   = n => '$' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  const fmt   = n => '€' + n.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
   if (cartCountEl) {
     cartCountEl.classList.toggle('has-items', count > 0);
@@ -287,7 +287,7 @@ document.querySelector('.contact-form')?.addEventListener('submit', function(e) 
   const email   = form.querySelector('#email')?.value || '';
   const subject = form.querySelector('#subject')?.value || 'Contact';
   const message = form.querySelector('#message')?.value || '';
-  window.location.href = `mailto:hello@zenluxury.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
+  window.location.href = `mailto:J.ovk.zakelijk@gmail.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
   showToast('Opening your email app…');
 });
 
