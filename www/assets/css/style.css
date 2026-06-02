@@ -865,6 +865,127 @@ label:has(.auth-forgot) { display:flex; justify-content:space-between; align-ite
 .footer__contact-mini a:hover { color:var(--gold); }
 
 /* ═══════════════════════════════════════
+   PAYMENT METHOD TILES (Zalando-style)
+═══════════════════════════════════════ */
+.pm-tiles {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .6rem;
+  margin-bottom: 0;
+}
+
+.pm-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .45rem;
+  padding: .9rem .5rem .75rem;
+  background: var(--black-card);
+  border: 2px solid rgba(201,168,76,.12);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+  position: relative;
+  user-select: none;
+}
+.pm-tile:hover          { border-color: rgba(201,168,76,.4); }
+.pm-tile.active         { border-color: var(--gold); background: rgba(201,168,76,.05); }
+.pm-tile__logo          { display: flex; align-items: center; justify-content: center; height: 28px; }
+.pm-tile__logo--text    { height: 28px; display: flex; align-items: center; }
+.pm-tile__name          { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; color: var(--grey); font-weight: 600; }
+.pm-tile.active .pm-tile__name { color: var(--gold); }
+.pm-tile__check {
+  position: absolute; top: .45rem; right: .45rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid rgba(201,168,76,.25);
+  background: transparent; transition: var(--transition);
+}
+.pm-tile.active .pm-tile__check {
+  background: var(--gold);
+  border-color: var(--gold);
+}
+.pm-tile.active .pm-tile__check::after {
+  content: '';
+  position: absolute; top: 2px; left: 4px;
+  width: 4px; height: 7px;
+  border: 2px solid var(--black);
+  border-top: none; border-left: none;
+  transform: rotate(45deg);
+}
+
+/* ── Payment Panel ── */
+.pm-panel {
+  border: 1px solid rgba(201,168,76,.12);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: var(--black-card);
+  animation: pmFadeIn .22s ease;
+}
+@keyframes pmFadeIn { from{opacity:0;transform:translateY(-4px)} to{opacity:1;transform:translateY(0)} }
+
+.pm-panel__inner   { padding: 1.4rem; }
+.pm-panel__subtitle {
+  font-size: .62rem; letter-spacing: .15em; text-transform: uppercase;
+  color: var(--gold); font-weight: 600; margin: 1.1rem 0 .7rem;
+}
+
+/* ── iDEAL header in panel ── */
+.ideal-header {
+  display: flex; align-items: center; gap: .9rem;
+  padding-bottom: .9rem;
+  border-bottom: 1px solid rgba(201,168,76,.1);
+}
+
+/* ── Dutch bank grid ── */
+.bank-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+
+.bank-tile {
+  display: flex; align-items: center; gap: .5rem;
+  padding: .6rem .7rem;
+  background: var(--black);
+  border: 1.5px solid rgba(201,168,76,.12);
+  border-radius: var(--radius);
+  cursor: pointer; font-family: var(--font-sans);
+  font-size: .68rem; font-weight: 600; color: var(--white-soft);
+  transition: border-color var(--transition), background var(--transition);
+  text-align: left; white-space: nowrap;
+}
+.bank-tile:hover    { border-color: rgba(201,168,76,.4); background: rgba(201,168,76,.04); }
+.bank-tile.selected {
+  border-color: var(--gold);
+  background: rgba(201,168,76,.07);
+  color: var(--white);
+}
+.bank-tile__dot {
+  width: 10px; height: 10px; border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ── Card logos row ── */
+.card-logos-row {
+  display: flex; gap: .5rem; align-items: center; flex-wrap: wrap;
+  margin-bottom: .3rem;
+}
+
+/* ── Klarna panel ── */
+.klarna-panel  { display: flex; flex-direction: column; }
+.klarna-options { display: flex; flex-direction: column; gap: .9rem; }
+.klarna-option  { display: flex; align-items: flex-start; gap: .7rem; }
+
+/* ── Responsive ── */
+@media(max-width: 600px) {
+  .pm-tiles   { grid-template-columns: repeat(2, 1fr); }
+  .bank-grid  { grid-template-columns: repeat(2, 1fr); }
+}
+@media(max-width: 380px) {
+  .bank-tile  { font-size: .6rem; padding: .5rem; }
+}
+
+/* ═══════════════════════════════════════
    QUICK CONTACT CARDS (contact page)
 ═══════════════════════════════════════ */
 .quick-contact { display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; }
