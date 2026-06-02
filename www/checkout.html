@@ -10,25 +10,8 @@
   <link rel="stylesheet" href="assets/css/style.css"/>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 
-  <!--
-    ╔══════════════════════════════════════════════════════════╗
-    ║  PAYMENT INTEGRATION — SETUP REQUIRED                   ║
-    ╠══════════════════════════════════════════════════════════╣
-    ║  PAYPAL                                                  ║
-    ║  1. Create account at developer.paypal.com               ║
-    ║  2. Create an app → copy Client ID                       ║
-    ║  3. Replace YOUR_PAYPAL_CLIENT_ID below                  ║
-    ║                                                          ║
-    ║  STRIPE                                                  ║
-    ║  1. Create account at dashboard.stripe.com               ║
-    ║  2. Activate payments → get Publishable Key              ║
-    ║  3. Create a Payment Link in Stripe Dashboard            ║
-    ║  4. Replace YOUR_STRIPE_PAYMENT_LINK below               ║
-    ╚══════════════════════════════════════════════════════════╝
-  -->
-
-  <!-- PayPal SDK — replace client-id with your own -->
-  <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=USD&intent=capture&components=buttons" data-sdk-integration-source="button-factory" defer></script>
+  <!-- PayPal Live — configured and active -->
+  <script src="https://www.paypal.com/sdk/js?client-id=AWimDAOe5blhfgBQ4cFtS58yv_5BvWywGB1awO68L3yMvPzk_Rx7D3xKgbUNifFWzDnak9V_e4rpm5ZT&currency=USD&intent=capture&components=buttons" data-sdk-integration-source="button-factory" defer></script>
 </head>
 <body>
 
@@ -38,7 +21,10 @@
     <div class="nav__inner">
       <a href="index.html" class="nav__logo-wrap">
         <div class="zl-mark">ZL</div>
-        <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+        <div class="nav__logo-block">
+          <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+          <span class="nav__logo-sub">WORLDWIDE</span>
+        </div>
       </a>
       <div style="display:flex;align-items:center;gap:.5rem;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:15px;height:15px;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
@@ -57,7 +43,7 @@
 </div>
 
 <!-- CHECKOUT GRID -->
-<section style="background:var(--black);padding-top:3rem;">
+<section style="background:var(--black);padding-top:3rem;padding-bottom:6rem;">
   <div class="container">
     <div class="checkout-grid">
 
@@ -69,7 +55,7 @@
           <h3 class="checkout-section__title">Contact Information</h3>
           <div class="form-group">
             <label for="email">Email Address</label>
-            <input type="email" id="email" class="form-input" placeholder="you@example.com" required/>
+            <input type="email" id="email" class="form-input" placeholder="you@example.com" autocomplete="email" required/>
           </div>
           <div style="margin-top:.8rem;display:flex;align-items:center;gap:.5rem;">
             <input type="checkbox" id="news-opt" style="accent-color:var(--gold);"/>
@@ -77,45 +63,45 @@
           </div>
         </div>
 
-        <!-- Shipping -->
+        <!-- Shipping Address -->
         <div class="checkout-section">
           <h3 class="checkout-section__title">Shipping Address</h3>
           <div class="form-row">
             <div class="form-group">
               <label for="first-name">First Name</label>
-              <input type="text" id="first-name" class="form-input" placeholder="Jordan" required/>
+              <input type="text" id="first-name" class="form-input" placeholder="Jordan" autocomplete="given-name" required/>
             </div>
             <div class="form-group">
               <label for="last-name">Last Name</label>
-              <input type="text" id="last-name" class="form-input" placeholder="Smith" required/>
+              <input type="text" id="last-name" class="form-input" placeholder="Smith" autocomplete="family-name" required/>
             </div>
           </div>
           <div class="form-group" style="margin-top:1rem;">
             <label for="address">Address</label>
-            <input type="text" id="address" class="form-input" placeholder="123 Main Street" required/>
+            <input type="text" id="address" class="form-input" placeholder="123 Main Street" autocomplete="street-address" required/>
           </div>
           <div class="form-group" style="margin-top:1rem;">
             <label for="address2">Apartment, Suite, etc. (optional)</label>
-            <input type="text" id="address2" class="form-input" placeholder="Apt 4B"/>
+            <input type="text" id="address2" class="form-input" placeholder="Apt 4B" autocomplete="address-line2"/>
           </div>
           <div class="form-row" style="margin-top:1rem;">
             <div class="form-group">
               <label for="city">City</label>
-              <input type="text" id="city" class="form-input" placeholder="New York" required/>
+              <input type="text" id="city" class="form-input" placeholder="New York" autocomplete="address-level2" required/>
             </div>
             <div class="form-group">
               <label for="zip">ZIP / Postal Code</label>
-              <input type="text" id="zip" class="form-input" placeholder="10001" required/>
+              <input type="text" id="zip" class="form-input" placeholder="10001" autocomplete="postal-code" required/>
             </div>
           </div>
           <div class="form-row" style="margin-top:1rem;">
             <div class="form-group">
               <label for="state">State / Province</label>
-              <input type="text" id="state" class="form-input" placeholder="NY"/>
+              <input type="text" id="state" class="form-input" placeholder="NY" autocomplete="address-level1"/>
             </div>
             <div class="form-group">
               <label for="country">Country</label>
-              <select id="country" class="form-select">
+              <select id="country" class="form-select" autocomplete="country">
                 <option value="US">United States</option>
                 <option value="GB">United Kingdom</option>
                 <option value="FR">France</option>
@@ -129,13 +115,17 @@
                 <option value="ES">Spain</option>
                 <option value="AE">UAE</option>
                 <option value="SG">Singapore</option>
+                <option value="ZA">South Africa</option>
+                <option value="NG">Nigeria</option>
+                <option value="BR">Brazil</option>
+                <option value="MX">Mexico</option>
                 <option value="OTHER">Other</option>
               </select>
             </div>
           </div>
           <div class="form-group" style="margin-top:1rem;">
             <label for="phone">Phone (for delivery updates)</label>
-            <input type="tel" id="phone" class="form-input" placeholder="+1 555 000 0000"/>
+            <input type="tel" id="phone" class="form-input" placeholder="+1 555 000 0000" autocomplete="tel"/>
           </div>
         </div>
 
@@ -165,138 +155,26 @@
         <div class="checkout-section">
           <h3 class="checkout-section__title">Payment</h3>
 
-          <div class="payment-methods" id="payment-methods">
-
-            <!-- Credit / Debit Card -->
-            <label class="payment-method selected" id="pm-card" onclick="showPaymentPanel('card')">
-              <input type="radio" name="payment" value="card" checked/>
-              <span class="payment-method__label">Credit / Debit Card</span>
-              <div class="payment-method__icons">
-                <span class="card-badge">Visa</span>
-                <span class="card-badge">MC</span>
-                <span class="card-badge">Amex</span>
-              </div>
-            </label>
-
-            <!-- PayPal -->
-            <label class="payment-method" id="pm-paypal" onclick="showPaymentPanel('paypal')">
-              <input type="radio" name="payment" value="paypal"/>
-              <span class="payment-method__label">PayPal</span>
-              <div class="payment-method__icons">
-                <span class="card-badge" style="background:rgba(0,71,186,.15);border-color:#0047BA;color:#0047BA;">PayPal</span>
-              </div>
-            </label>
-
-            <!-- Apple Pay -->
-            <label class="payment-method" id="pm-apple" onclick="showPaymentPanel('apple')">
-              <input type="radio" name="payment" value="apple"/>
-              <span class="payment-method__label">Apple Pay</span>
-              <div class="payment-method__icons">
-                <span class="card-badge">&#xF8FF; Pay</span>
-              </div>
-            </label>
-
-            <!-- Google Pay -->
-            <label class="payment-method" id="pm-google" onclick="showPaymentPanel('google')">
-              <input type="radio" name="payment" value="google"/>
-              <span class="payment-method__label">Google Pay</span>
-              <div class="payment-method__icons">
-                <span class="card-badge" style="background:rgba(52,168,83,.12);border-color:#34A853;color:#34A853;">G Pay</span>
-              </div>
-            </label>
-
-            <!-- Klarna -->
-            <label class="payment-method" id="pm-klarna" onclick="showPaymentPanel('klarna')">
-              <input type="radio" name="payment" value="klarna"/>
-              <span class="payment-method__label">Buy Now, Pay Later — Klarna</span>
-              <div class="payment-method__icons">
-                <span class="card-badge" style="background:rgba(255,182,193,.15);border-color:#FF748C;color:#FF748C;">Klarna</span>
-              </div>
-            </label>
-
+          <!-- PayPal intro -->
+          <div style="background:rgba(201,168,76,.04);border:1px solid rgba(201,168,76,.14);padding:1.1rem 1.3rem;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" style="width:20px;height:20px;color:var(--gold);flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            <p style="font-size:.75rem;color:var(--white-soft);line-height:1.6;margin:0;">
+              <strong style="color:var(--white);">All major cards accepted</strong> — click the PayPal button below to pay with Visa, Mastercard, Amex, Discover, or your PayPal balance. Your payment is processed securely by PayPal.
+            </p>
           </div>
 
-          <!-- Card fields panel -->
-          <div id="panel-card" class="card-fields">
-            <div class="form-group">
-              <label for="card-number">Card Number</label>
-              <!--
-                Stripe Elements mount point — replace with:
-                  <div id="stripe-card-element" style="padding:.78rem 1rem;background:var(--black-card);border:1px solid rgba(201,168,76,.18);"></div>
-                and initialise with your Stripe publishable key (see checkout.js comments)
-              -->
-              <input type="text" id="card-number" class="form-input" placeholder="1234 5678 9012 3456" maxlength="19" inputmode="numeric"/>
-            </div>
-            <div class="card-field-row">
-              <div class="form-group">
-                <label for="card-expiry">Expiry Date</label>
-                <input type="text" id="card-expiry" class="form-input" placeholder="MM / YY" maxlength="7"/>
-              </div>
-              <div class="form-group">
-                <label for="card-cvc">CVC</label>
-                <input type="text" id="card-cvc" class="form-input" placeholder="123" maxlength="4" inputmode="numeric"/>
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="card-name">Name on Card</label>
-              <input type="text" id="card-name" class="form-input" placeholder="Jordan Smith"/>
-            </div>
-
-            <!-- Stripe integration note -->
-            <div style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);padding:1rem;font-size:.72rem;color:var(--grey);line-height:1.7;margin-top:.5rem;">
-              <strong style="color:var(--gold);display:block;margin-bottom:.3rem;">⚡ Connect Stripe to activate card payments</strong>
-              1. Create a free account at <a href="https://dashboard.stripe.com/register" target="_blank" style="color:var(--gold);">dashboard.stripe.com</a><br/>
-              2. Copy your Publishable Key from Developers → API keys<br/>
-              3. Replace <code style="color:var(--gold);">YOUR_STRIPE_PUBLISHABLE_KEY</code> in <code>assets/js/checkout.js</code><br/>
-              4. Create a Payment Link and replace <code style="color:var(--gold);">YOUR_STRIPE_PAYMENT_LINK</code>
-            </div>
-
-            <button type="button" class="btn btn--gold btn--full" id="stripe-pay-btn" onclick="handleStripeCheckout()" style="margin-top:1rem;">
-              Pay with Card — <span id="stripe-amount">$0.00</span>
-            </button>
+          <!-- PayPal button area -->
+          <div class="paypal-btn-wrap" id="paypal-checkout-wrap">
+            <div id="paypal-button-container" style="min-height:55px;"></div>
+            <p id="paypal-loading-msg" style="color:var(--grey);font-size:.75rem;padding:.5rem 0;">Loading secure payment…</p>
           </div>
 
-          <!-- PayPal panel -->
-          <div id="panel-paypal" class="paypal-btn-wrap" style="display:none;">
-            <div id="paypal-button-container"></div>
-            <p>You'll be redirected to PayPal to complete your purchase securely.</p>
-            <div style="background:rgba(201,168,76,.05);border:1px solid rgba(201,168,76,.15);padding:1rem;font-size:.72rem;color:var(--grey);line-height:1.7;margin-top:.8rem;">
-              <strong style="color:var(--gold);display:block;margin-bottom:.3rem;">⚡ Connect PayPal to activate</strong>
-              1. Create a free app at <a href="https://developer.paypal.com/dashboard/applications/live" target="_blank" style="color:var(--gold);">developer.paypal.com</a><br/>
-              2. Copy your Live Client ID<br/>
-              3. Replace <code style="color:var(--gold);">YOUR_PAYPAL_CLIENT_ID</code> in the script tag at the top of this file
-            </div>
-          </div>
-
-          <!-- Apple Pay panel -->
-          <div id="panel-apple" style="display:none;margin-top:1rem;">
-            <button type="button" class="btn btn--full" style="background:#000;color:#fff;border:1px solid #333;font-size:.9rem;padding:1rem;" onclick="showToast('Apple Pay requires HTTPS and Safari. Activate via Stripe.')">
-              &#xF8FF; Pay
-            </button>
-            <p style="font-size:.7rem;color:var(--grey);text-align:center;margin-top:.6rem;">Available in Safari on Apple devices. Requires Stripe integration.</p>
-          </div>
-
-          <!-- Google Pay panel -->
-          <div id="panel-google" style="display:none;margin-top:1rem;">
-            <button type="button" class="btn btn--full" style="background:#fff;color:#000;border:1px solid #ccc;font-size:.9rem;padding:1rem;" onclick="showToast('Google Pay requires Stripe integration to activate.')">
-              <span style="font-weight:700;">G</span> Pay
-            </button>
-            <p style="font-size:.7rem;color:var(--grey);text-align:center;margin-top:.6rem;">Available on Android and Chrome. Requires Stripe integration.</p>
-          </div>
-
-          <!-- Klarna panel -->
-          <div id="panel-klarna" style="display:none;margin-top:1rem;padding:1rem;background:rgba(255,182,193,.06);border:1px solid rgba(255,116,140,.2);">
-            <p style="font-size:.8rem;color:var(--white);margin-bottom:.5rem;font-weight:500;">Split into 4 interest-free payments</p>
-            <p style="font-size:.75rem;color:var(--grey);">Pay 25% now, the rest over 6 weeks. No interest. No fees.</p>
-            <button type="button" class="btn btn--full" style="margin-top:1rem;background:#FF748C;color:#fff;border-color:#FF748C;" onclick="showToast('Klarna requires backend integration. Visit klarna.com/developers.')">
-              Pay with Klarna
-            </button>
-          </div>
+          <!-- paypal-setup-notice removed — PayPal is now configured and live -->
 
           <!-- Secure badges -->
           <div class="secure-badge" style="margin-top:1.5rem;">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            <span>256-bit SSL Encrypted · Powered by Stripe &amp; PayPal</span>
+            <span>256-bit SSL · Payments secured by PayPal</span>
           </div>
 
           <div class="accepted-cards" style="margin-top:.8rem;">
@@ -305,10 +183,7 @@
             <span class="card-badge">Mastercard</span>
             <span class="card-badge">Amex</span>
             <span class="card-badge">Discover</span>
-            <span class="card-badge">PayPal</span>
-            <span class="card-badge">Apple Pay</span>
-            <span class="card-badge">Google Pay</span>
-            <span class="card-badge">Klarna</span>
+            <span class="card-badge" style="background:rgba(0,71,186,.12);border-color:rgba(0,71,186,.35);color:#4a90d9;">PayPal</span>
           </div>
         </div>
 
@@ -318,7 +193,6 @@
       <div class="order-summary">
         <h4 class="order-summary__title">Order Summary</h4>
         <div id="order-items">
-          <!-- Populated by checkout.js -->
           <div style="text-align:center;padding:2rem 0;">
             <p style="color:var(--grey);font-size:.83rem;">Your cart is empty</p>
             <a href="shop.html" class="btn btn--outline" style="margin-top:1rem;font-size:.65rem;">Shop Now</a>
@@ -328,6 +202,7 @@
           <div class="order-totals__row"><span>Subtotal</span><span id="ot-subtotal">$0.00</span></div>
           <div class="order-totals__row"><span>Shipping</span><span id="ot-shipping">Free</span></div>
           <div class="order-totals__row"><span>Tax (est.)</span><span id="ot-tax">$0.00</span></div>
+          <div class="order-totals__row" id="ot-discount-row" style="display:none;color:var(--gold);"><span>Discount</span><span id="ot-discount"></span></div>
           <div class="order-totals__row total"><span>Total</span><span id="ot-total">$0.00</span></div>
         </div>
 
@@ -348,7 +223,7 @@
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--grey);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold);flex-shrink:0;"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/></svg>
-            Secure, encrypted payment processing
+            Secure, encrypted payment via PayPal
           </div>
           <div style="display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:var(--grey);">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:14px;height:14px;color:var(--gold);flex-shrink:0;"><path d="M23 7l-7 5-7-5M1 7l7 5 7-5"/></svg>
@@ -362,11 +237,11 @@
 </section>
 
 <!-- FOOTER (minimal) -->
-<footer style="background:var(--black);border-top:1px solid rgba(201,168,76,.1);padding:2rem 0;margin-top:4rem;">
+<footer style="background:var(--black);border-top:1px solid rgba(201,168,76,.1);padding:2rem 0;">
   <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;">
     <div style="display:flex;align-items:center;gap:.6rem;">
       <div class="zl-mark" style="width:28px;height:28px;font-size:.75rem;">ZL</div>
-      <span style="font-size:.7rem;color:var(--grey);">© 2026 Zen Luxury · ZL</span>
+      <span style="font-size:.7rem;color:var(--grey);">© 2026 Zen Luxury Worldwide · ZL</span>
     </div>
     <div style="display:flex;gap:1.2rem;">
       <a href="index.html" style="font-size:.7rem;color:var(--grey);">← Back to Shop</a>

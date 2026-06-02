@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link rel="stylesheet" href="assets/css/style.css"/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✦</text></svg>"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 </head>
 <body>
 
@@ -16,7 +16,13 @@
 <nav class="nav">
   <div class="container">
     <div class="nav__inner">
-      <a href="index.html" class="nav__logo-wrap"><div class="zl-mark">ZL</div><span class="nav__logo-text">ZEN <span>LUXURY</span></span></a>
+      <a href="index.html" class="nav__logo-wrap">
+        <div class="zl-mark">ZL</div>
+        <div class="nav__logo-block">
+          <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+          <span class="nav__logo-sub">WORLDWIDE</span>
+        </div>
+      </a>
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
@@ -24,9 +30,7 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav__actions">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Search">
-          <circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/>
-        </svg>
+        <div id="auth-nav-slot"></div>
         <div class="nav__cart-count" role="button" aria-label="Open cart" tabindex="0">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/>
@@ -214,7 +218,10 @@
   <div class="container">
     <div class="footer__grid">
       <div>
-        <p class="footer__brand-logo">ZEN <span>LUXURY</span></p>
+        <div class="footer__brand-logo">
+          <div class="zl-mark">ZL</div>
+          <p class="footer__brand-logo-text">ZEN <span>LUXURY</span></p>
+        </div>
         <p class="footer__brand-desc">Elevated fashion rooted in mindful craft. Designed for those who appreciate the silence between the notes.</p>
         <div class="footer__socials">
           <a href="#" class="footer__social" aria-label="Instagram">
@@ -272,11 +279,10 @@
   </div>
   <div class="cart-drawer__body"></div>
   <div class="cart-drawer__footer">
-    <div class="cart-drawer__total">
-      <span>Total</span>
-      <strong>$0.00</strong>
-    </div>
-    <button class="btn btn--gold cart-checkout-btn" style="width:100%;text-align:center;">Proceed to Checkout</button>
+    <div class="cart-drawer__subtotal"><span>Subtotal</span><strong id="cart-subtotal">$0.00</strong></div>
+    <div class="cart-drawer__total"><span>Total</span><strong id="cart-total">$0.00</strong></div>
+    <a href="checkout.html" class="btn btn--gold btn--full">Proceed to Checkout</a>
+    <button class="btn btn--outline btn--full" style="margin-top:.5rem;" onclick="closeCart()">Continue Shopping</button>
   </div>
 </aside>
 
@@ -286,5 +292,6 @@
 </div>
 
 <script src="assets/js/main.js"></script>
+<script src="assets/js/auth.js"></script>
 </body>
 </html>

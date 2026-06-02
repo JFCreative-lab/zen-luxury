@@ -257,20 +257,78 @@ revealEls.forEach(el => {
 
 /* ─────────────────────────────────────
    NEWSLETTER
+   Saves emails to localStorage.
+   UPGRADE: Replace with Mailchimp / ConvertKit / Formspree embed.
 ───────────────────────────────────── */
-document.querySelector('.newsletter__form')?.addEventListener('submit', e => {
-  e.preventDefault();
-  const input = e.target.querySelector('.newsletter__input');
-  if (input?.value) { showToast('You\'re in the ZL circle!'); input.value = ''; }
+document.querySelectorAll('.newsletter__form').forEach(form => {
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    const input = e.target.querySelector('.newsletter__input');
+    const email = input?.value.trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showToast('Please enter a valid email address.'); return;
+    }
+    // Save to localStorage
+    const subs = JSON.parse(localStorage.getItem('zl-newsletter-subs') || '[]');
+    if (!subs.includes(email)) {
+      subs.push(email);
+      localStorage.setItem('zl-newsletter-subs', JSON.stringify(subs));
+    }
+    showToast('You\'re in the ZL Circle — welcome!');
+    if (input) input.value = '';
+  });
 });
 
 /* ─────────────────────────────────────
    CONTACT FORM
+   SETUP: Replace YOUR_FORMSPREE_ID with your form ID from formspree.io
+   (free plan: 50 submissions/month — no backend required).
+   Until configured, messages fall back to mailto.
 ───────────────────────────────────── */
-document.querySelector('.contact-form')?.addEventListener('submit', e => {
+const FORMSPREE_ID = 'YOUR_FORMSPREE_ID'; // e.g. 'xwkjqvol'
+
+document.querySelector('.contact-form')?.addEventListener('submit', async function(e) {
   e.preventDefault();
-  showToast('Message sent — we\'ll get back to you soon.');
-  e.target.reset();
+
+  const form    = e.target;
+  const submitBtn = form.querySelector('[type="submit"]');
+  const data    = new FormData(form);
+
+  // Consent check
+  const consent = form.querySelector('#consent');
+  if (consent && !consent.checked) {
+    showToast('Please accept the Privacy Policy to send your message.'); return;
+  }
+
+  if (FORMSPREE_ID === 'YOUR_FORMSPREE_ID') {
+    // Formspree not configured — fall back to mailto
+    const name    = `${form.querySelector('#first-name')?.value || ''} ${form.querySelector('#last-name')?.value || ''}`.trim();
+    const email   = form.querySelector('#email')?.value || '';
+    const subject = form.querySelector('#subject')?.value || 'Contact';
+    const message = form.querySelector('#message')?.value || '';
+    const mailtoHref = `mailto:hello@zenluxury.com?subject=${encodeURIComponent(subject + ' — ' + name)}&body=${encodeURIComponent(message + '\n\nFrom: ' + email)}`;
+    window.location.href = mailtoHref;
+    showToast('Opening your email app…');
+    return;
+  }
+
+  // Submit to Formspree
+  if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Sending…'; }
+  try {
+    const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      method: 'POST', body: data, headers: { Accept: 'application/json' },
+    });
+    if (res.ok) {
+      showToast('Message sent — we\'ll get back to you soon.');
+      form.reset();
+    } else {
+      showToast('Something went wrong. Please try emailing us directly.');
+    }
+  } catch {
+    showToast('Network error. Please try again or email us directly.');
+  } finally {
+    if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = 'Send Message'; }
+  }
 });
 
 /* ─────────────────────────────────────

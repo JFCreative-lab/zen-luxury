@@ -18,7 +18,10 @@
     <div class="nav__inner">
       <a href="index.html" class="nav__logo-wrap">
         <div class="zl-mark">ZL</div>
-        <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+        <div class="nav__logo-block">
+          <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+          <span class="nav__logo-sub">WORLDWIDE</span>
+        </div>
       </a>
       <ul class="nav__links">
         <li><a href="index.html">Home</a></li>
@@ -27,7 +30,7 @@
         <li><a href="contact.html">Contact</a></li>
       </ul>
       <div class="nav__actions">
-        <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+        <div id="auth-nav-slot"></div>
         <div class="nav__cart-count" role="button" tabindex="0" aria-label="Open cart">
           <svg class="nav__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
           <span class="badge">0</span>
@@ -446,5 +449,6 @@
   <span class="toast__message"></span>
 </div>
 <script src="assets/js/main.js"></script>
+<script src="assets/js/auth.js"></script>
 </body>
 </html>

@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="ZL · Zen Luxury — Order Confirmed"/>
+  <title>Order Confirmed — ZL · Zen Luxury</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
+</head>
+<body>
+
+<!-- NAV (minimal) -->
+<nav class="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="index.html" class="nav__logo-wrap">
+        <div class="zl-mark">ZL</div>
+        <div class="nav__logo-block">
+          <span class="nav__logo-text">ZEN <span>LUXURY</span></span>
+          <span class="nav__logo-sub">WORLDWIDE</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- CONFIRMATION BODY -->
+<main class="confirm-page" id="confirm-main">
+
+  <!-- Success icon -->
+  <div class="confirm-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+      <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+      <polyline points="22 4 12 14.01 9 11.01"/>
+    </svg>
+  </div>
+
+  <p class="gold uppercase" style="font-size:.6rem;letter-spacing:.3em;margin-bottom:.7rem;">Payment Confirmed</p>
+  <h1 style="font-size:clamp(2rem,4vw,3.5rem);margin-bottom:.6rem;">Thank You.</h1>
+  <p style="max-width:440px;text-align:center;color:var(--white-soft);line-height:1.9;">
+    Your order has been placed and is being prepared with care.
+    A confirmation will be sent to your email.
+  </p>
+
+  <!-- Order ID badge -->
+  <div class="confirm-order-id" id="confirm-order-id">Loading…</div>
+
+  <!-- Date -->
+  <p id="confirm-date" style="font-size:.68rem;color:var(--grey);letter-spacing:.1em;"></p>
+
+  <!-- Items -->
+  <div class="confirm-items" id="confirm-items"></div>
+
+  <!-- Total -->
+  <div class="confirm-total" id="confirm-total" style="display:none;">
+    <span>Order Total</span>
+    <strong id="confirm-total-amount"></strong>
+  </div>
+
+  <!-- Shipping address -->
+  <div id="confirm-address" style="max-width:520px;width:100%;margin:0 auto 2rem;padding:1.2rem 1.4rem;background:var(--black-card);border:1px solid rgba(201,168,76,.1);text-align:left;display:none;">
+    <p style="font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:.7rem;">Ships To</p>
+    <p id="confirm-address-text" style="font-size:.83rem;line-height:1.9;color:var(--white-soft);"></p>
+  </div>
+
+  <!-- CTA buttons -->
+  <div class="confirm-actions">
+    <a href="shop.html" class="btn btn--gold">Continue Shopping</a>
+    <a href="index.html" class="btn btn--outline">Back to Home</a>
+  </div>
+
+  <!-- Divider + brand sign-off -->
+  <div style="margin-top:4rem;padding-top:2.5rem;border-top:1px solid rgba(201,168,76,.1);text-align:center;">
+    <div class="zl-mark" style="width:38px;height:38px;font-size:.9rem;margin:0 auto .8rem;">ZL</div>
+    <p style="font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--grey);">Zen Luxury Worldwide</p>
+  </div>
+
+</main>
+
+<!-- TOAST -->
+<div class="toast">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+  <span class="toast__message"></span>
+</div>
+
+<script src="assets/js/main.js"></script>
+<script>
+(function renderConfirmation() {
+  const raw = localStorage.getItem('zl-last-order');
+  if (!raw) {
+    // No order found — redirect to shop
+    document.getElementById('confirm-order-id').textContent = 'No order found';
+    document.querySelector('.confirm-page p').textContent = 'No recent order found. Start shopping below.';
+    return;
+  }
+
+  let order;
+  try { order = JSON.parse(raw); } catch { return; }
+
+  // Order ID
+  const idEl = document.getElementById('confirm-order-id');
+  if (idEl) idEl.textContent = 'Order ' + order.id;
+
+  // Date
+  const dateEl = document.getElementById('confirm-date');
+  if (dateEl && order.date) {
+    const d = new Date(order.date);
+    dateEl.textContent = d.toLocaleDateString('en-US', { weekday:'long', year:'numeric', month:'long', day:'numeric' });
+  }
+
+  // Items
+  const itemsEl = document.getElementById('confirm-items');
+  if (itemsEl && order.items?.length) {
+    const fmt = n => '$' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    itemsEl.innerHTML = order.items.map(item => `
+      <div class="confirm-item">
+        <img src="${item.image}" alt="${item.name}" loading="lazy"/>
+        <div class="confirm-item__info">
+          <p class="confirm-item__name">${item.name}</p>
+          <p class="confirm-item__meta">Size: ${item.variant || 'One Size'} · Qty: ${item.qty}</p>
+        </div>
+        <span class="confirm-item__price">${fmt(item.price * item.qty)}</span>
+      </div>`).join('');
+  }
+
+  // Total
+  const totalEl     = document.getElementById('confirm-total');
+  const totalAmount = document.getElementById('confirm-total-amount');
+  if (totalEl && totalAmount && order.total != null) {
+    const fmt = n => '$' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    totalAmount.textContent = fmt(order.total);
+    totalEl.style.display = '';
+  }
+
+  // Shipping address
+  const addrEl     = document.getElementById('confirm-address');
+  const addrTextEl = document.getElementById('confirm-address-text');
+  if (addrEl && addrTextEl && order.shipping) {
+    const s = order.shipping;
+    const lines = [
+      `${s.firstName} ${s.lastName}`,
+      s.address + (s.address2 ? `, ${s.address2}` : ''),
+      `${s.city}${s.state ? ', ' + s.state : ''} ${s.zip}`,
+      s.country,
+    ].filter(Boolean);
+    addrTextEl.innerHTML = lines.join('<br/>');
+    addrEl.style.display = 'block';
+  }
+
+  // Clear the stored order so back-button doesn't re-show
+  // (keep for 30 min in case user wants to screenshot)
+  setTimeout(() => localStorage.removeItem('zl-last-order'), 30 * 60 * 1000);
+})();
+</script>
+</body>
+</html>
