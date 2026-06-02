@@ -1,13 +1,6 @@
 /**
- * ZL · Zen Luxury — Auth Logic
- *
- * Uses localStorage for client-side account management so the site works
- * on GitHub Pages without a backend.
- *
- * PRODUCTION UPGRADE: Replace this with Firebase Authentication or Supabase
- * Auth for real server-side security, social login, and password recovery.
- *   Firebase: https://firebase.google.com/docs/auth/web/start
- *   Supabase: https://supabase.com/docs/guides/auth
+ * ZL · Zen Luxury — Auth
+ * Client-side account management via localStorage.
  */
 
 // ─────────────────────────────────────
@@ -20,7 +13,7 @@ const SESSION_KEY  = 'zl-session';
 // HELPERS
 // ─────────────────────────────────────
 
-/** Encode password — not cryptographic; upgrade to hashed backend in production. */
+/** Encode password for local storage. */
 function encodePassword(pw) {
   return btoa(unescape(encodeURIComponent(pw)));
 }
@@ -170,7 +163,6 @@ if (loginPanel && registerPanel) {
       document.getElementById('login-email')?.focus();
       return;
     }
-    // In production: trigger Firebase sendPasswordResetEmail(auth, email)
     showToast(`If an account exists for ${email}, a reset link will be sent.`);
   };
 
