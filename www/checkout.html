@@ -12,7 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 
   <!-- PayPal Live — configured and active | iDEAL enabled for NL customers -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AWimDAOe5blhfgBQ4cFtS58yv_5BvWywGB1awO68L3yMvPzk_Rx7D3xKgbUNifFWzDnak9V_e4rpm5ZT&currency=EUR&intent=capture&components=buttons&enable-funding=ideal,bancontact" data-sdk-integration-source="button-factory" defer></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AWimDAOe5blhfgBQ4cFtS58yv_5BvWywGB1awO68L3yMvPzk_Rx7D3xKgbUNifFWzDnak9V_e4rpm5ZT&currency=EUR&intent=capture&components=buttons&enable-funding=ideal,bancontact,klarna" data-sdk-integration-source="button-factory" defer></script>
 </head>
 <body>
 
@@ -236,16 +236,34 @@
                   <svg viewBox="0 0 50 22" style="height:20px;width:auto;"><rect width="50" height="22" rx="3" fill="#FFB3C7"/><text x="5" y="15.5" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#17120F" letter-spacing="-.2">Klarna</text></svg>
                 </div>
               </label>
-              <div class="pm-expand" id="pm-expand-klarna" style="display:none;">
-                <div class="klarna-panel">
-                  <svg viewBox="0 0 80 30" style="height:28px;margin-bottom:.9rem;"><rect width="80" height="30" rx="4" fill="#FFB3C7"/><text x="8" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="#17120F" letter-spacing="-.3">Klarna</text></svg>
+                            <div class="pm-expand" id="pm-expand-klarna" style="display:none;">
+                <div style="margin-bottom:1rem;">
+                  <svg viewBox="0 0 80 30" style="height:26px;margin-bottom:.8rem;display:block;">
+                    <rect width="80" height="30" rx="4" fill="#FFB3C7"/>
+                    <text x="8" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="#17120F" letter-spacing="-.3">Klarna</text>
+                  </svg>
                   <div class="klarna-options">
-                    <div class="klarna-option"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg><div><p style="font-size:.78rem;font-weight:600;color:var(--white);">Betaal in 3 termijnen — rentevrij</p><p style="font-size:.68rem;color:var(--grey);">Betaal nu 1/3, dan na 30 en 60 dagen</p></div></div>
-                    <div class="klarna-option"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg><div><p style="font-size:.78rem;font-weight:600;color:var(--white);">Achteraf betalen — 30 dagen</p><p style="font-size:.68rem;color:var(--grey);">Ontvang eerst, betaal later</p></div></div>
+                    <div class="klarna-option">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                      <div>
+                        <p style="font-size:.78rem;font-weight:600;color:var(--white);">Betaal in 3 termijnen — rentevrij</p>
+                        <p style="font-size:.68rem;color:var(--grey);">Nu 1/3 betalen, dan na 30 en 60 dagen</p>
+                      </div>
+                    </div>
+                    <div class="klarna-option">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:16px;height:16px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
+                      <div>
+                        <p style="font-size:.78rem;font-weight:600;color:var(--white);">Achteraf betalen — 30 dagen</p>
+                        <p style="font-size:.68rem;color:var(--grey);">Ontvang eerst, betaal later</p>
+                      </div>
+                    </div>
                   </div>
-                  <a href="https://wa.me/31683491518?text=Hi%2C%20ik%20wil%20graag%20betalen%20via%20Klarna" target="_blank" rel="noopener" class="btn btn--full" style="background:#FFB3C7;color:#17120F;border-color:#FFB3C7;margin-top:1rem;font-size:.72rem;font-weight:700;">Regelen via WhatsApp</a>
-                  <p style="font-size:.63rem;color:var(--grey);text-align:center;margin-top:.6rem;">Klarna activering vereist · Beschikbaar in overleg</p>
                 </div>
+                <p id="klarna-loading-msg" style="color:var(--grey);font-size:.7rem;padding:.4rem 0;">Betaalknop wordt geladen…</p>
+                <div id="klarna-button-container" style="min-height:50px;"></div>
+                <p id="klarna-eligible-msg" style="font-size:.65rem;color:var(--grey);margin-top:.6rem;display:none;">
+                  Klarna voert een kredietcontrole uit bij het plaatsen van je bestelling.
+                </p>
               </div>
 
               <!-- Creditcard of betaalpas -->
