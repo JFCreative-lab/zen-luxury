@@ -25,7 +25,7 @@ function getCart() {
 
 let discount     = 0;
 let shippingCost = 0;
-const rendered   = { ideal: false, card: false, bancontact: false }; // lazy render flags
+const rendered   = { ideal: false, klarna: false, card: false, bancontact: false }; // lazy render flags
 let activeMethod = 'ideal';                                       // default tab
 let selectedBankBic = null;                                        // iDEAL bank BIC
 
@@ -101,7 +101,7 @@ function updatePaymentSection(hasItems) {
   }
   if (emptyMsg) emptyMsg.style.display = 'none';
   if (pmWrap)   pmWrap.style.display   = '';
-  if (activeMethod !== 'klarna') renderPaymentButtons(activeMethod);
+  renderPaymentButtons(activeMethod);
 }
 
 // Keep old name for shipping change handler
@@ -122,7 +122,7 @@ window.switchPayment = function(method) {
     if (panel) panel.style.display = m === method ? '' : 'none';
   });
   // Render payment buttons (skip klarna — it uses a WhatsApp link)
-  if (getCart().length && method !== 'klarna') renderPaymentButtons(method);
+  if (getCart().length) renderPaymentButtons(method);
 };
 
 
@@ -265,6 +265,37 @@ function renderPaymentButtons(method) {
     }).render('#card-paypal-container');
   }
 
+  if (method === 'klarna' && !rendered.klarna) {
+    rendered.klarna = true;
+    const klarnaContainer = document.getElementById('klarna-button-container');
+    const klarnaLoading   = document.getElementById('klarna-loading-msg');
+    const klarnaNote      = document.getElementById('klarna-eligible-msg');
+    if (klarnaLoading) klarnaLoading.style.display = 'none';
+    try {
+      const klarnaBtn = paypal.Buttons({
+        ...btnBase,
+        fundingSource: paypal.FUNDING.KLARNA,
+        style: { height: 50, shape: 'rect' },
+      });
+      if (klarnaBtn.isEligible()) {
+        klarnaBtn.render('#klarna-button-container');
+        if (klarnaNote) klarnaNote.style.display = '';
+      } else {
+        // Klarna not enabled on this PayPal account — show clear message
+        if (klarnaContainer) klarnaContainer.innerHTML =
+          '<p style="font-size:.78rem;color:var(--grey);padding:.6rem 0;line-height:1.7;">' +
+          'Klarna Achteraf Betalen is momenteel niet beschikbaar. ' +
+          'Activeer Klarna in je PayPal-accountinstellingen of kies een andere betaalmethode.' +
+          '</p>';
+      }
+    } catch (e) {
+      if (klarnaContainer) klarnaContainer.innerHTML =
+        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
+        'Klarna tijdelijk niet beschikbaar. Kies een andere betaalmethode.' +
+        '</p>';
+    }
+  }
+
   if (method === 'bancontact' && !rendered.bancontact) {
     rendered.bancontact = true;
     const bcContainer = document.getElementById('bancontact-button-container');
@@ -319,6 +350,8 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
     if (instruction) instruction.style.display = 'none';
     // Reset bank selection
     selectedBankBic = null;
+    const klarnaMsg = document.getElementById('klarna-eligible-msg');
+    if (klarnaMsg) klarnaMsg.style.display = 'none';
     document.querySelectorAll('.bank-tile-select').forEach(t => t.classList.remove('selected'));
     const bankMsg = document.getElementById('bank-selected-msg');
     if (bankMsg) { bankMsg.textContent = ''; bankMsg.style.display = 'none'; }
