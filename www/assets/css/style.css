@@ -1187,3 +1187,7 @@ label:has(.auth-forgot) { display:flex; justify-content:space-between; align-ite
   position: absolute; top: 4px; right: 6px;
   font-size: .6rem; color: var(--gold); font-weight: 700;
 }
+
+.hero__bg { background-image: url('../images/product-3.jpg'); background-size: cover; background-position: center 20%; opacity: 0.35; }
+.brand-banner__bg { background-image: url('../images/product-1.jpg'); background-size: cover; background-position: center; opacity: 0.25; }
+.about-hero__bg { background-image: url('../images/product-2.jpg'); background-size: cover; background-position: center top; opacity: 0.4; }
