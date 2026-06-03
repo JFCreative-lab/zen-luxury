@@ -112,15 +112,20 @@ function updatePayPalSection(hasItems) { updatePaymentSection(hasItems); }
 window.switchPayment = function(method) {
   activeMethod = method;
 
-  // Update tile states
+  // Update tile states and selected input
   document.querySelectorAll('.pm-tile').forEach(t => {
-    t.classList.toggle('active', t.dataset.method === method);
+    const isActive = t.dataset.method === method;
+    t.classList.toggle('active', isActive);
+    const input = t.querySelector('input[name="pm"]');
+    if (input) input.checked = isActive;
   });
+
   // Show/hide panels
   ['ideal','paypal','card','klarna'].forEach(m => {
     const panel = document.getElementById(`pm-panel-${m}`);
     if (panel) panel.style.display = m === method ? '' : 'none';
   });
+
   // Lazy-render payment buttons for this panel
   if (getCart().length) renderPaymentButtons(method);
 };
@@ -136,6 +141,11 @@ window.selectBank = function(btn) {
 // ─────────────────────────────────────
 // SHARED ORDER HANDLERS
 // ─────────────────────────────────────
+function getSelectedCountryCode() {
+  const code = document.getElementById('country')?.value ?? '';
+  return code && code !== 'OTHER' ? code : 'NL';
+}
+
 function buildOrder(actions) {
   const cart  = getCart();
   const total = getTotal();
@@ -166,7 +176,7 @@ function buildOrder(actions) {
           admin_area_2:   document.getElementById('city')?.value      ?? '',
           admin_area_1:   document.getElementById('state')?.value     ?? '',
           postal_code:    document.getElementById('zip')?.value       ?? '',
-          country_code:   document.getElementById('country')?.value   ?? 'NL',
+          country_code:   getSelectedCountryCode(),
         },
       },
     }],
@@ -194,40 +204,48 @@ const btnBase = { onClick, createOrder: (d,a) => buildOrder(a), onApprove: handl
 function renderPaymentButtons(method) {
   if (typeof paypal === 'undefined') return;   // SDK not ready — poll handles retry
 
-  if (method === 'ideal' && !rendered.ideal) {
-    rendered.ideal = true;
-    const loadingMsg = document.getElementById('paypal-loading-msg');
-    if (loadingMsg) loadingMsg.style.display = 'none';
+  const loadingMsg = document.getElementById('paypal-loading-msg');
+  if (loadingMsg) loadingMsg.style.display = method === 'ideal' ? '' : 'none';
 
-    // iDEAL button
+  const renderButton = (containerId, config) => {
+    const container = document.getElementById(containerId);
+    if (!container) return false;
     try {
-      paypal.Buttons({
-        ...btnBase,
-        fundingSource: paypal.FUNDING.IDEAL,
-        style: { height: 50, shape: 'rect' },
-      }).render('#ideal-button-container');
+      paypal.Buttons(config).render(container);
+      return true;
     } catch (e) {
-      const c = document.getElementById('ideal-button-container');
-      if (c) c.innerHTML = '<p style="font-size:.72rem;color:var(--grey);text-align:center;">iDEAL tijdelijk niet beschikbaar — gebruik PayPal.</p>';
-      if (loadingMsg) loadingMsg.style.display = 'none';
+      console.error(`PayPal button render failed for ${containerId}:`, e);
+      if (container) container.innerHTML = '<p style="font-size:.72rem;color:var(--grey);text-align:center;">Payment method temporarily unavailable. Please choose another option.</p>';
+      return false;
     }
+  };
+
+  if (method === 'ideal' && !rendered.ideal) {
+    const success = renderButton('ideal-button-container', {
+      ...btnBase,
+      fundingSource: paypal.FUNDING.IDEAL,
+      style: { height: 50, shape: 'rect' },
+    });
+    if (success) rendered.ideal = true;
+    if (loadingMsg) loadingMsg.style.display = success ? 'none' : 'block';
   }
 
   if (method === 'paypal' && !rendered.paypal) {
-    rendered.paypal = true;
-    paypal.Buttons({
+    const success = renderButton('paypal-button-container', {
       ...btnBase,
+      fundingSource: paypal.FUNDING.PAYPAL,
       style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 },
-    }).render('#paypal-button-container');
+    });
+    if (success) rendered.paypal = true;
   }
 
   if (method === 'card' && !rendered.card) {
-    rendered.card = true;
-    // Standard PayPal button in the card panel — customer can click "Pay by Debit or Credit Card"
-    paypal.Buttons({
+    const success = renderButton('card-paypal-container', {
       ...btnBase,
+      fundingSource: paypal.FUNDING.CARD,
       style: { layout: 'vertical', color: 'white', shape: 'rect', label: 'pay', height: 50 },
-    }).render('#card-paypal-container');
+    });
+    if (success) rendered.card = true;
   }
 }
 
