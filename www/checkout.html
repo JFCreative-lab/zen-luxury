@@ -231,48 +231,24 @@
                   </div>
                 </div>
 
-                <p class="pm-panel__subtitle">Selecteer uw bank</p>
-
-                <!-- Dutch bank tiles -->
+                <!-- Payment button -->
+                <p id="paypal-loading-msg" style="color:var(--grey);font-size:.7rem;padding:.5rem 0;text-align:center;">Betaalknop wordt geladen…</p>
+                <div id="ideal-button-container" style="min-height:50px;"></div>
+                <p id="ideal-instruction" style="font-size:.65rem;color:var(--grey);text-align:center;margin-top:.5rem;display:none;">
+                  Uw bank selecteert u veilig in het volgende scherm.
+                </p>
+                <!-- Supported banks — visual only -->
+                <p style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-top:1.4rem;margin-bottom:.6rem;">Ondersteunde banken</p>
                 <div class="bank-grid">
-                  <button type="button" class="bank-tile" data-bank="abnamro" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#009286;"></span>
-                    <span>ABN AMRO</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="ing" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#FF6200;"></span>
-                    <span>ING</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="rabobank" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#1B3B7B;"></span>
-                    <span>Rabobank</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="sns" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#007AC2;"></span>
-                    <span>SNS</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="asn" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#00A550;"></span>
-                    <span>ASN Bank</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="triodos" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#4B2D83;"></span>
-                    <span>Triodos</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="knab" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#0064D2;"></span>
-                    <span>Knab</span>
-                  </button>
-                  <button type="button" class="bank-tile" data-bank="regiobank" onclick="selectBank(this)">
-                    <span class="bank-tile__dot" style="background:#D9000D;"></span>
-                    <span>Regiobank</span>
-                  </button>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#009286;"></span><span>ABN AMRO</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#FF6200;"></span><span>ING</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#1B3B7B;"></span><span>Rabobank</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#007AC2;"></span><span>SNS</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#00A550;"></span><span>ASN Bank</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#4B2D83;"></span><span>Triodos</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#0064D2;"></span><span>Knab</span></div>
+                  <div class="bank-badge"><span class="bank-tile__dot" style="background:#D9000D;"></span><span>Regiobank</span></div>
                 </div>
-
-                <!-- PayPal FUNDING.IDEAL renders here -->
-                <div id="ideal-button-container" style="margin-top:1rem;min-height:48px;"></div>
-                <p id="paypal-loading-msg" style="color:var(--grey);font-size:.7rem;padding:.3rem 0;text-align:center;">Betaalknop wordt geladen…</p>
-                <p style="font-size:.65rem;color:var(--grey);text-align:center;margin-top:.3rem;">U wordt doorgestuurd naar uw bank om veilig te betalen.</p>
               </div>
             </div>
 

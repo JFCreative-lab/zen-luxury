@@ -196,20 +196,38 @@ function renderPaymentButtons(method) {
 
   if (method === 'ideal' && !rendered.ideal) {
     rendered.ideal = true;
-    const loadingMsg = document.getElementById('paypal-loading-msg');
+    const loadingMsg  = document.getElementById('paypal-loading-msg');
+    const instruction = document.getElementById('ideal-instruction');
+    const container   = document.getElementById('ideal-button-container');
     if (loadingMsg) loadingMsg.style.display = 'none';
-
-    // iDEAL button
     try {
-      paypal.Buttons({
+      const idealBtn = paypal.Buttons({
         ...btnBase,
         fundingSource: paypal.FUNDING.IDEAL,
         style: { height: 50, shape: 'rect' },
-      }).render('#ideal-button-container');
+      });
+      if (idealBtn.isEligible()) {
+        idealBtn.render('#ideal-button-container');
+        if (instruction) instruction.style.display = '';
+      } else {
+        if (container) {
+          container.insertAdjacentHTML('beforebegin',
+            '<p style="font-size:.75rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' +
+            'iDEAL is beschikbaar via de PayPal-checkout hieronder — selecteer <strong style="color:var(--white);">iDEAL</strong> in het PayPal-venster.' +
+            '</p>'
+          );
+        }
+        paypal.Buttons({
+          ...btnBase,
+          style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 },
+        }).render('#ideal-button-container');
+        if (instruction) instruction.style.display = '';
+      }
     } catch (e) {
-      const c = document.getElementById('ideal-button-container');
-      if (c) c.innerHTML = '<p style="font-size:.72rem;color:var(--grey);text-align:center;">iDEAL tijdelijk niet beschikbaar — gebruik PayPal.</p>';
-      if (loadingMsg) loadingMsg.style.display = 'none';
+      if (container) container.innerHTML =
+        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
+        'iDEAL tijdelijk niet beschikbaar. Kies PayPal of een andere betaalmethode.' +
+        '</p>';
     }
   }
 
@@ -246,12 +264,12 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
 
     // Re-render buttons on shipping change (amount changed)
     Object.keys(rendered).forEach(k => rendered[k] = false);
-    ['ideal','paypal','card'].forEach(m => {
-      const c = document.getElementById(`${m === 'ideal' ? 'ideal' : m === 'card' ? 'card-paypal' : 'paypal'}-button-container`);
-      if (c) c.innerHTML = '';
-    });
-    if (document.getElementById('paypal-loading-msg'))
-      document.getElementById('paypal-loading-msg').style.display = '';
+    const containerIds = { ideal: 'ideal-button-container', paypal: 'paypal-button-container', card: 'card-paypal-container' };
+    Object.values(containerIds).forEach(id => { const c = document.getElementById(id); if (c) c.innerHTML = ''; });
+    const instruction = document.getElementById('ideal-instruction');
+    if (instruction) instruction.style.display = 'none';
+    const loadingMsg = document.getElementById('paypal-loading-msg');
+    if (loadingMsg) { loadingMsg.textContent = 'Betaalknop wordt geladen\u2026'; loadingMsg.style.display = ''; }
     renderPaymentButtons(activeMethod);
   });
 });

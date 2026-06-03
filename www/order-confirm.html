@@ -115,7 +115,7 @@
   // Items
   const itemsEl = document.getElementById('confirm-items');
   if (itemsEl && order.items?.length) {
-    const fmt = n => '$' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const fmt = n => '€' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     itemsEl.innerHTML = order.items.map(item => `
       <div class="confirm-item">
         <img src="${item.image}" alt="${item.name}" loading="lazy"/>
@@ -131,7 +131,7 @@
   const totalEl     = document.getElementById('confirm-total');
   const totalAmount = document.getElementById('confirm-total-amount');
   if (totalEl && totalAmount && order.total != null) {
-    const fmt = n => '$' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    const fmt = n => '€' + Number(n).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     totalAmount.textContent = fmt(order.total);
     totalEl.style.display = '';
   }
