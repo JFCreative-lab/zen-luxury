@@ -121,7 +121,6 @@ window.switchPayment = function(method) {
     const panel = document.getElementById(`pm-expand-${m}`);
     if (panel) panel.style.display = m === method ? '' : 'none';
   });
-  // Render payment buttons (skip klarna — it uses a WhatsApp link)
   if (getCart().length) renderPaymentButtons(method);
 };
 
@@ -210,7 +209,7 @@ const btnBase = { onClick, createOrder: (d,a) => buildOrder(a), onApprove: handl
 // RENDER PAYMENT BUTTONS (lazy per tab)
 // ─────────────────────────────────────
 function renderPaymentButtons(method) {
-  if (typeof paypal === 'undefined') return;   // SDK not ready — poll handles retry
+  if (typeof paypal === 'undefined') return;
 
   if (method === 'ideal' && !rendered.ideal) {
     rendered.ideal = true;
@@ -219,140 +218,54 @@ function renderPaymentButtons(method) {
     const container   = document.getElementById('ideal-button-container');
     if (loadingMsg) loadingMsg.style.display = 'none';
     try {
-      const idealBtn = paypal.Buttons({
-        ...btnBase,
-        fundingSource: paypal.FUNDING.IDEAL,
-        style: { height: 50, shape: 'rect' },
-      });
+      const idealBtn = paypal.Buttons({ ...btnBase, fundingSource: paypal.FUNDING.IDEAL, style: { height: 50, shape: 'rect' } });
       if (idealBtn.isEligible()) {
         idealBtn.render('#ideal-button-container');
-        if (instruction) instruction.style.display = '';
       } else {
-        if (container) {
-          container.insertAdjacentHTML('beforebegin',
-            '<p style="font-size:.75rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' +
-            'iDEAL is beschikbaar via de PayPal-checkout hieronder — selecteer <strong style="color:var(--white);">iDEAL</strong> in het PayPal-venster.' +
-            '</p>'
-          );
-        }
-        paypal.Buttons({
-          ...btnBase,
-          style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 },
-        }).render('#ideal-button-container');
-        if (instruction) instruction.style.display = '';
+        paypal.Buttons({ ...btnBase, style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 } }).render('#ideal-button-container');
       }
+      if (instruction) instruction.style.display = '';
     } catch (e) {
-      if (container) container.innerHTML =
-        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
-        'iDEAL tijdelijk niet beschikbaar. Kies PayPal of een andere betaalmethode.' +
-        '</p>';
+      if (container) container.innerHTML = '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">iDEAL tijdelijk niet beschikbaar. Vernieuw de pagina.</p>';
     }
-  }
-
-  if (method === 'paypal' && !rendered.paypal) {
-    rendered.paypal = true;
-    paypal.Buttons({
-      ...btnBase,
-      style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 },
-    }).render('#paypal-button-container');
-  }
-
-  if (method === 'card' && !rendered.card) {
-    rendered.card = true;
-    paypal.Buttons({
-      ...btnBase,
-      style: { layout: 'vertical', color: 'white', shape: 'rect', label: 'pay', height: 50 },
-    }).render('#card-paypal-container');
   }
 
   if (method === 'klarna' && !rendered.klarna) {
     rendered.klarna = true;
-    const klarnaContainer = document.getElementById('klarna-button-container');
-    const klarnaLoading   = document.getElementById('klarna-loading-msg');
-    const klarnaNote      = document.getElementById('klarna-eligible-msg');
-
-    function hideLoading() { if (klarnaLoading) klarnaLoading.style.display = 'none'; }
-    function renderFallback(note) {
-      // Standard PayPal button — always works, no special account setup needed
-      hideLoading();
-      if (note && klarnaContainer) {
-        klarnaContainer.insertAdjacentHTML('beforebegin',
-          '<p style="font-size:.72rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' + note + '</p>'
-        );
-      }
-      paypal.Buttons({
-        ...btnBase,
-        style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 },
-      }).render('#klarna-button-container').catch(() => {
-        if (klarnaContainer) klarnaContainer.innerHTML =
-          '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
-          'Betaalknop kon niet laden. Vernieuw de pagina of kies een andere methode.' +
-          '</p>';
-      });
-    }
-
+    const kl = document.getElementById('klarna-loading-msg');
+    const kn = document.getElementById('klarna-eligible-msg');
+    const kc = document.getElementById('klarna-button-container');
+    if (kl) kl.style.display = 'none';
     try {
-      // 1. Try native Klarna button first
-      const klarnaBtn = paypal.Buttons({
-        ...btnBase,
-        fundingSource: paypal.FUNDING.KLARNA,
-        style: { height: 50, shape: 'rect' },
-      });
-      if (klarnaBtn.isEligible()) {
-        klarnaBtn.render('#klarna-button-container');
-        hideLoading();
-        if (klarnaNote) klarnaNote.style.display = '';
-      } else {
-        // 2. Try PayPal Pay Later (available in NL via PayPal)
-        const payLaterBtn = paypal.Buttons({
-          ...btnBase,
-          fundingSource: paypal.FUNDING.PAYLATER,
-          style: { height: 50, shape: 'rect' },
-        });
-        if (payLaterBtn.isEligible()) {
-          payLaterBtn.render('#klarna-button-container');
-          hideLoading();
-          if (klarnaNote) klarnaNote.style.display = '';
-        } else {
-          // 3. Guaranteed fallback — standard PayPal button always works
-          renderFallback('Klarna Achteraf Betalen is ingeschakeld via PayPal. Kies „Achteraf betalen” in het PayPal-venster als die optie beschikbaar is.');
-        }
-      }
+      paypal.Buttons({ ...btnBase, style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 } }).render('#klarna-button-container');
+      if (kn) kn.style.display = '';
     } catch (e) {
-      // Any SDK error — still show a working PayPal button
-      renderFallback(null);
+      if (kc) kc.innerHTML = '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">Betaalknop kon niet laden. Vernieuw de pagina.</p>';
+    }
+  }
+
+  if (method === 'card' && !rendered.card) {
+    rendered.card = true;
+    const cc = document.getElementById('card-paypal-container');
+    try {
+      paypal.Buttons({ ...btnBase, style: { layout: 'vertical', color: 'white', shape: 'rect', label: 'pay', height: 50 } }).render('#card-paypal-container');
+    } catch (e) {
+      if (cc) cc.innerHTML = '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">Betaalknop kon niet laden. Vernieuw de pagina.</p>';
     }
   }
 
   if (method === 'bancontact' && !rendered.bancontact) {
     rendered.bancontact = true;
-    const bcContainer = document.getElementById('bancontact-button-container');
+    const bc = document.getElementById('bancontact-button-container');
     try {
-      const bcBtn = paypal.Buttons({
-        ...btnBase,
-        fundingSource: paypal.FUNDING.BANCONTACT,
-        style: { height: 50, shape: 'rect' },
-      });
+      const bcBtn = paypal.Buttons({ ...btnBase, fundingSource: paypal.FUNDING.BANCONTACT, style: { height: 50, shape: 'rect' } });
       if (bcBtn.isEligible()) {
         bcBtn.render('#bancontact-button-container');
       } else {
-        if (bcContainer) {
-          bcContainer.insertAdjacentHTML('beforebegin',
-            '<p style="font-size:.75rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' +
-            'Bancontact is beschikbaar via de PayPal-checkout — selecteer <strong style="color:var(--white);">Bancontact</strong> in het PayPal-venster.' +
-            '</p>'
-          );
-        }
-        paypal.Buttons({
-          ...btnBase,
-          style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 },
-        }).render('#bancontact-button-container');
+        paypal.Buttons({ ...btnBase, style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 } }).render('#bancontact-button-container');
       }
     } catch (e) {
-      if (bcContainer) bcContainer.innerHTML =
-        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
-        'Bancontact tijdelijk niet beschikbaar. Kies een andere betaalmethode.' +
-        '</p>';
+      if (bc) bc.innerHTML = '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">Bancontact tijdelijk niet beschikbaar.</p>';
     }
   }
 }
@@ -372,8 +285,7 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
 
     // Re-render buttons on shipping change (amount changed)
     Object.keys(rendered).forEach(k => rendered[k] = false);
-    const containerIds = { ideal: 'ideal-button-container', paypal: 'paypal-button-container', card: 'card-paypal-container' };
-    Object.values(containerIds).forEach(id => { const c = document.getElementById(id); if (c) c.innerHTML = ''; });
+    ['ideal-button-container','klarna-button-container','card-paypal-container','bancontact-button-container'].forEach(id => { const c = document.getElementById(id); if (c) c.innerHTML = ''; });
     const instruction = document.getElementById('ideal-instruction');
     if (instruction) instruction.style.display = 'none';
     // Reset bank selection
