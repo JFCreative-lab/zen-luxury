@@ -25,7 +25,7 @@ function getCart() {
 
 let discount     = 0;
 let shippingCost = 0;
-const rendered   = { ideal: false, paypal: false, card: false }; // lazy render flags
+const rendered   = { ideal: false, card: false, bancontact: false }; // lazy render flags
 let activeMethod = 'ideal';                                       // default tab
 
 // ─────────────────────────────────────
@@ -100,7 +100,7 @@ function updatePaymentSection(hasItems) {
   }
   if (emptyMsg) emptyMsg.style.display = 'none';
   if (pmWrap)   pmWrap.style.display   = '';
-  renderPaymentButtons(activeMethod);
+  if (activeMethod !== 'klarna') renderPaymentButtons(activeMethod);
 }
 
 // Keep old name for shipping change handler
@@ -111,27 +111,20 @@ function updatePayPalSection(hasItems) { updatePaymentSection(hasItems); }
 // ─────────────────────────────────────
 window.switchPayment = function(method) {
   activeMethod = method;
-
-  // Update tile states
-  document.querySelectorAll('.pm-tile').forEach(t => {
-    t.classList.toggle('active', t.dataset.method === method);
+  // Highlight the selected row
+  document.querySelectorAll('.pm-row').forEach(r => {
+    r.classList.toggle('active', r.dataset.method === method);
   });
-  // Show/hide panels
-  ['ideal','paypal','card','klarna'].forEach(m => {
-    const panel = document.getElementById(`pm-panel-${m}`);
+  // Show / hide expansion panels
+  ['ideal','klarna','card','bancontact'].forEach(m => {
+    const panel = document.getElementById(`pm-expand-${m}`);
     if (panel) panel.style.display = m === method ? '' : 'none';
   });
-  // Lazy-render payment buttons for this panel
-  if (getCart().length) renderPaymentButtons(method);
+  // Render payment buttons (skip klarna — it uses a WhatsApp link)
+  if (getCart().length && method !== 'klarna') renderPaymentButtons(method);
 };
 
-// ─────────────────────────────────────
-// BANK TILE SELECTION (iDEAL)
-// ─────────────────────────────────────
-window.selectBank = function(btn) {
-  document.querySelectorAll('.bank-tile').forEach(t => t.classList.remove('selected'));
-  btn.classList.add('selected');
-};
+
 
 // ─────────────────────────────────────
 // SHARED ORDER HANDLERS
@@ -241,11 +234,42 @@ function renderPaymentButtons(method) {
 
   if (method === 'card' && !rendered.card) {
     rendered.card = true;
-    // Standard PayPal button in the card panel — customer can click "Pay by Debit or Credit Card"
     paypal.Buttons({
       ...btnBase,
       style: { layout: 'vertical', color: 'white', shape: 'rect', label: 'pay', height: 50 },
     }).render('#card-paypal-container');
+  }
+
+  if (method === 'bancontact' && !rendered.bancontact) {
+    rendered.bancontact = true;
+    const bcContainer = document.getElementById('bancontact-button-container');
+    try {
+      const bcBtn = paypal.Buttons({
+        ...btnBase,
+        fundingSource: paypal.FUNDING.BANCONTACT,
+        style: { height: 50, shape: 'rect' },
+      });
+      if (bcBtn.isEligible()) {
+        bcBtn.render('#bancontact-button-container');
+      } else {
+        if (bcContainer) {
+          bcContainer.insertAdjacentHTML('beforebegin',
+            '<p style="font-size:.75rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' +
+            'Bancontact is beschikbaar via de PayPal-checkout — selecteer <strong style="color:var(--white);">Bancontact</strong> in het PayPal-venster.' +
+            '</p>'
+          );
+        }
+        paypal.Buttons({
+          ...btnBase,
+          style: { layout: 'vertical', color: 'blue', shape: 'rect', label: 'pay', height: 50 },
+        }).render('#bancontact-button-container');
+      }
+    } catch (e) {
+      if (bcContainer) bcContainer.innerHTML =
+        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
+        'Bancontact tijdelijk niet beschikbaar. Kies een andere betaalmethode.' +
+        '</p>';
+    }
   }
 }
 
