@@ -12,8 +12,8 @@ const PROMO_CODES = {
   'ZLVIP': 0.25,
 };
 const TAX_RATE            = 0.08;
-const SHIPPING_RATES      = { standard: 0, express: 12, overnight: 28 };
-const FREE_SHIP_THRESHOLD = 150;
+const SHIPPING_RATES      = { standard: 0, express: 0.10, overnight: 0.25 };
+const FREE_SHIP_THRESHOLD = 0.50;  // lowered for test prices
 
 // ─────────────────────────────────────
 // STATE
@@ -27,6 +27,7 @@ let discount     = 0;
 let shippingCost = 0;
 const rendered   = { ideal: false, card: false, bancontact: false }; // lazy render flags
 let activeMethod = 'ideal';                                       // default tab
+let selectedBankBic = null;                                        // iDEAL bank BIC
 
 // ─────────────────────────────────────
 // MATH
@@ -127,6 +128,18 @@ window.switchPayment = function(method) {
 
 
 // ─────────────────────────────────────
+// IDEAL BANK SELECTION
+// ─────────────────────────────────────
+window.selectBank = function(btn) {
+  document.querySelectorAll('.bank-tile-select').forEach(t => t.classList.remove('selected'));
+  btn.classList.add('selected');
+  selectedBankBic = btn.dataset.bic || null;
+  const name = btn.dataset.name || '';
+  const msg  = document.getElementById('bank-selected-msg');
+  if (msg) { msg.textContent = '\u2713 ' + name + ' geselecteerd'; msg.style.display = ''; }
+};
+
+// ─────────────────────────────────────
 // SHARED ORDER HANDLERS
 // ─────────────────────────────────────
 function buildOrder(actions) {
@@ -164,6 +177,10 @@ function buildOrder(actions) {
       },
     }],
     application_context: { brand_name: 'Zen Luxury Worldwide', user_action: 'PAY_NOW' },
+    // Pre-select bank so PayPal redirects directly to that bank (skips PayPal bank picker)
+    ...(selectedBankBic && activeMethod === 'ideal' ? {
+      payment_source: { ideal: { bic: selectedBankBic, country_code: 'NL' } },
+    } : {}),
   });
 }
 
@@ -178,7 +195,15 @@ function handleApprove(data, actions) {
 function handleCancel()   { showToast('Payment cancelled. Your cart is still saved.'); }
 function handleError(err) { console.error('Payment error:', err); showToast('Payment error. Please try again.'); }
 
-const onClick = (data, actions) => { if (!validateForm()) return actions.reject(); return actions.resolve(); };
+const onClick = (data, actions) => {
+  if (activeMethod === 'ideal' && !selectedBankBic) {
+    showToast('Selecteer eerst je bank om te betalen via iDEAL.');
+    document.getElementById('bank-select-grid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return actions.reject();
+  }
+  if (!validateForm()) return actions.reject();
+  return actions.resolve();
+};
 const btnBase = { onClick, createOrder: (d,a) => buildOrder(a), onApprove: handleApprove, onCancel: handleCancel, onError: handleError };
 
 // ─────────────────────────────────────
@@ -292,6 +317,11 @@ document.querySelectorAll('input[name="shipping"]').forEach(radio => {
     Object.values(containerIds).forEach(id => { const c = document.getElementById(id); if (c) c.innerHTML = ''; });
     const instruction = document.getElementById('ideal-instruction');
     if (instruction) instruction.style.display = 'none';
+    // Reset bank selection
+    selectedBankBic = null;
+    document.querySelectorAll('.bank-tile-select').forEach(t => t.classList.remove('selected'));
+    const bankMsg = document.getElementById('bank-selected-msg');
+    if (bankMsg) { bankMsg.textContent = ''; bankMsg.style.display = 'none'; }
     const loadingMsg = document.getElementById('paypal-loading-msg');
     if (loadingMsg) { loadingMsg.textContent = 'Betaalknop wordt geladen\u2026'; loadingMsg.style.display = ''; }
     renderPaymentButtons(activeMethod);
