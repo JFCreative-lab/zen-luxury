@@ -12,7 +12,7 @@
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 44'><rect width='44' height='44' fill='%23c9a84c'/><text x='22' y='30' text-anchor='middle' font-family='serif' font-size='18' font-weight='700' fill='%23080808' letter-spacing='1'>ZL</text></svg>"/>
 
   <!-- PayPal Live — configured and active | iDEAL enabled for NL customers -->
-  <script src="https://www.paypal.com/sdk/js?client-id=AWimDAOe5blhfgBQ4cFtS58yv_5BvWywGB1awO68L3yMvPzk_Rx7D3xKgbUNifFWzDnak9V_e4rpm5ZT&currency=EUR&intent=capture&components=buttons&enable-funding=ideal" data-sdk-integration-source="button-factory" defer></script>
+  <script src="https://www.paypal.com/sdk/js?client-id=AWimDAOe5blhfgBQ4cFtS58yv_5BvWywGB1awO68L3yMvPzk_Rx7D3xKgbUNifFWzDnak9V_e4rpm5ZT&currency=EUR&intent=capture&components=buttons&enable-funding=ideal,bancontact" data-sdk-integration-source="button-factory" defer></script>
 </head>
 <body>
 
@@ -162,83 +162,29 @@
             <a href="shop.html" style="color:var(--gold);display:block;margin-top:.5rem;">← Back to Shop</a>
           </div>
 
-          <!-- ── PAYMENT METHOD TILES (Zalando-style) ── -->
+                    <!-- ── BETAALMETHODEN ── -->
           <div id="pm-wrap">
-            <div class="pm-tiles" role="radiogroup" aria-label="Payment method">
+            <div class="pm-list" role="radiogroup" aria-label="Betaalmethode">
 
-              <!-- iDEAL -->
-              <label class="pm-tile active" data-method="ideal" onclick="switchPayment('ideal')">
+              <!-- iDEAL | Wero -->
+              <label class="pm-row active" data-method="ideal" onclick="switchPayment('ideal')">
                 <input type="radio" name="pm" value="ideal" checked hidden/>
-                <div class="pm-tile__logo">
-                  <svg viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:26px;">
-                    <rect width="52" height="26" rx="3" fill="#CC0066"/>
-                    <text x="5" y="18" font-family="Arial,sans-serif" font-size="12.5" font-weight="900" fill="white" letter-spacing="-0.3">iDEAL</text>
-                    <polyline points="42,5 46,12.5 39,21" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
+                <span class="pm-row__radio" aria-hidden="true"><span class="pm-row__radio-dot"></span></span>
+                <div class="pm-row__body">
+                  <span class="pm-row__title">iDEAL&thinsp;<span class="pm-row__divider">|</span>&thinsp;Wero</span>
+                  <span class="pm-row__desc">Online betalen via je Nederlandse bank</span>
+                  <span class="pm-row__tag">Meest gebruikte betaalmethode in Nederland</span>
                 </div>
-                <span class="pm-tile__name">iDEAL</span>
-                <div class="pm-tile__check"></div>
-              </label>
-
-              <!-- PayPal -->
-              <label class="pm-tile" data-method="paypal" onclick="switchPayment('paypal')">
-                <input type="radio" name="pm" value="paypal" hidden/>
-                <div class="pm-tile__logo pm-tile__logo--text" style="color:#003087;font-weight:800;font-size:.95rem;letter-spacing:-.5px;">Pay<span style="color:#009cde;">Pal</span></div>
-                <span class="pm-tile__name">PayPal</span>
-                <div class="pm-tile__check"></div>
-              </label>
-
-              <!-- Credit / Debit Card -->
-              <label class="pm-tile" data-method="card" onclick="switchPayment('card')">
-                <input type="radio" name="pm" value="card" hidden/>
-                <div class="pm-tile__logo">
-                  <svg viewBox="0 0 38 26" style="width:38px;height:26px;">
-                    <rect width="38" height="26" rx="3" fill="#1A1F71"/><rect y="6" width="38" height="7" fill="#F9A533"/>
-                    <rect x="4" y="16" width="10" height="3" rx="1" fill="white" opacity=".7"/>
-                  </svg>
+                <div class="pm-row__logos">
+                  <svg viewBox="0 0 48 22" style="height:20px;width:auto;"><rect width="48" height="22" rx="3" fill="#CC0066"/><text x="4" y="16" font-family="Arial,sans-serif" font-size="10.5" font-weight="900" fill="white" letter-spacing="-.3">iDEAL</text><polyline points="38,4 41,11 36,18" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  <span style="background:#F4E829;color:#111;font-size:.6rem;font-weight:800;padding:.18rem .45rem;border-radius:3px;letter-spacing:-.2px;">wero</span>
                 </div>
-                <span class="pm-tile__name">Card</span>
-                <div class="pm-tile__check"></div>
               </label>
-
-              <!-- Klarna -->
-              <label class="pm-tile" data-method="klarna" onclick="switchPayment('klarna')">
-                <input type="radio" name="pm" value="klarna" hidden/>
-                <div class="pm-tile__logo">
-                  <svg viewBox="0 0 52 26" xmlns="http://www.w3.org/2000/svg" style="width:52px;height:26px;">
-                    <rect width="52" height="26" rx="3" fill="#FFB3C7"/>
-                    <text x="6" y="18" font-family="Arial,sans-serif" font-size="11" font-weight="900" fill="#17120F" letter-spacing="-.2">Klarna</text>
-                  </svg>
-                </div>
-                <span class="pm-tile__name">Klarna</span>
-                <div class="pm-tile__check"></div>
-              </label>
-
-            </div>
-
-            <!-- ── iDEAL PANEL ── -->
-            <div class="pm-panel" id="pm-panel-ideal">
-              <div class="pm-panel__inner">
-                <div class="ideal-header">
-                  <svg viewBox="0 0 54 27" xmlns="http://www.w3.org/2000/svg" style="height:34px;width:auto;">
-                    <rect width="54" height="27" rx="4" fill="#CC0066"/>
-                    <text x="5" y="19" font-family="Arial,sans-serif" font-size="13.5" font-weight="900" fill="white" letter-spacing="-0.5">iDEAL</text>
-                    <polyline points="43,5 47,13 40,22" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                  </svg>
-                  <div>
-                    <p style="font-size:.83rem;font-weight:600;color:var(--white);">Betaal direct via uw bank</p>
-                    <p style="font-size:.7rem;color:var(--grey);">Veilig, snel en vertrouwd</p>
-                  </div>
-                </div>
-
-                <!-- Payment button -->
-                <p id="paypal-loading-msg" style="color:var(--grey);font-size:.7rem;padding:.5rem 0;text-align:center;">Betaalknop wordt geladen…</p>
+              <div class="pm-expand" id="pm-expand-ideal">
+                <p id="paypal-loading-msg" style="color:var(--grey);font-size:.7rem;padding:.4rem 0;">Betaalknop wordt geladen…</p>
                 <div id="ideal-button-container" style="min-height:50px;"></div>
-                <p id="ideal-instruction" style="font-size:.65rem;color:var(--grey);text-align:center;margin-top:.5rem;display:none;">
-                  Uw bank selecteert u veilig in het volgende scherm.
-                </p>
-                <!-- Supported banks — visual only -->
-                <p style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-top:1.4rem;margin-bottom:.6rem;">Ondersteunde banken</p>
+                <p id="ideal-instruction" style="font-size:.65rem;color:var(--grey);margin-top:.5rem;display:none;">Uw bank selecteert u veilig in het volgende scherm.</p>
+                <p style="font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--grey);margin-top:1.3rem;margin-bottom:.5rem;">Ondersteunde banken</p>
                 <div class="bank-grid">
                   <div class="bank-badge"><span class="bank-tile__dot" style="background:#009286;"></span><span>ABN AMRO</span></div>
                   <div class="bank-badge"><span class="bank-tile__dot" style="background:#FF6200;"></span><span>ING</span></div>
@@ -250,70 +196,68 @@
                   <div class="bank-badge"><span class="bank-tile__dot" style="background:#D9000D;"></span><span>Regiobank</span></div>
                 </div>
               </div>
-            </div>
 
-            <!-- ── PAYPAL PANEL ── -->
-            <div class="pm-panel" id="pm-panel-paypal" style="display:none;">
-              <div class="pm-panel__inner">
-                <p style="font-size:.78rem;color:var(--white-soft);margin-bottom:.9rem;">
-                  Pay securely with PayPal — also accepts <strong style="color:var(--white);">Visa, Mastercard, Amex, Discover</strong> and <strong style="color:var(--white);">Venmo</strong> without a PayPal account.
-                </p>
-                <div id="paypal-button-container" style="min-height:50px;"></div>
-              </div>
-            </div>
-
-            <!-- ── CARD PANEL ── -->
-            <div class="pm-panel" id="pm-panel-card" style="display:none;">
-              <div class="pm-panel__inner">
-                <div class="card-logos-row">
-                  <!-- Visa -->
-                  <svg viewBox="0 0 48 30" style="height:28px;"><rect width="48" height="30" rx="4" fill="#1A1F71"/><text x="7" y="21" font-family="Arial,sans-serif" font-size="13" font-weight="900" fill="white" letter-spacing=".5">VISA</text></svg>
-                  <!-- Mastercard -->
-                  <svg viewBox="0 0 48 30" style="height:28px;"><rect width="48" height="30" rx="4" fill="#252525"/><circle cx="18" cy="15" r="9" fill="#EB001B"/><circle cx="30" cy="15" r="9" fill="#F79E1B"/><path d="M24 8a9 9 0 010 14 9 9 0 010-14z" fill="#FF5F00"/></svg>
-                  <!-- Amex -->
-                  <svg viewBox="0 0 48 30" style="height:28px;"><rect width="48" height="30" rx="4" fill="#007BC1"/><text x="5" y="21" font-family="Arial,sans-serif" font-size="11" font-weight="900" fill="white">AMEX</text></svg>
-                  <!-- Discover -->
-                  <svg viewBox="0 0 48 30" style="height:28px;"><rect width="48" height="30" rx="4" fill="#231F20"/><text x="3" y="21" font-family="Arial,sans-serif" font-size="9" font-weight="700" fill="white">DISCOVER</text><circle cx="37" cy="15" r="9" fill="#F76520"/></svg>
+              <!-- Achteraf Betalen -->
+              <label class="pm-row" data-method="klarna" onclick="switchPayment('klarna')">
+                <input type="radio" name="pm" value="klarna" hidden/>
+                <span class="pm-row__radio" aria-hidden="true"><span class="pm-row__radio-dot"></span></span>
+                <div class="pm-row__body">
+                  <span class="pm-row__title">Achteraf Betalen</span>
+                  <span class="pm-row__desc">Betaal na levering via online bankieren of overschrijving</span>
                 </div>
-                <p style="font-size:.78rem;color:var(--white-soft);margin:.9rem 0 .8rem;">
-                  Pay by card through PayPal's secure checkout — no PayPal account needed. Click below and choose <strong style="color:var(--white);">"Debit or Credit Card"</strong>.
-                </p>
-                <div id="card-paypal-container" style="min-height:50px;"></div>
-              </div>
-            </div>
-
-            <!-- ── KLARNA PANEL ── -->
-            <div class="pm-panel" id="pm-panel-klarna" style="display:none;">
-              <div class="pm-panel__inner">
+                <div class="pm-row__logos">
+                  <svg viewBox="0 0 50 22" style="height:20px;width:auto;"><rect width="50" height="22" rx="3" fill="#FFB3C7"/><text x="5" y="15.5" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="#17120F" letter-spacing="-.2">Klarna</text></svg>
+                </div>
+              </label>
+              <div class="pm-expand" id="pm-expand-klarna" style="display:none;">
                 <div class="klarna-panel">
-                  <svg viewBox="0 0 80 30" style="height:30px;margin-bottom:.9rem;">
-                    <rect width="80" height="30" rx="4" fill="#FFB3C7"/>
-                    <text x="8" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="#17120F" letter-spacing="-.3">Klarna</text>
-                  </svg>
+                  <svg viewBox="0 0 80 30" style="height:28px;margin-bottom:.9rem;"><rect width="80" height="30" rx="4" fill="#FFB3C7"/><text x="8" y="21" font-family="Arial,sans-serif" font-size="14" font-weight="900" fill="#17120F" letter-spacing="-.3">Klarna</text></svg>
                   <div class="klarna-options">
-                    <div class="klarna-option">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
-                      <div>
-                        <p style="font-size:.78rem;font-weight:600;color:var(--white);">Betaal in 3 termijnen — rentevrij</p>
-                        <p style="font-size:.68rem;color:var(--grey);">Betaal nu 1/3, dan na 30 en 60 dagen</p>
-                      </div>
-                    </div>
-                    <div class="klarna-option">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg>
-                      <div>
-                        <p style="font-size:.78rem;font-weight:600;color:var(--white);">Achteraf betalen — 30 dagen</p>
-                        <p style="font-size:.68rem;color:var(--grey);">Ontvang eerst, betaal later</p>
-                      </div>
-                    </div>
+                    <div class="klarna-option"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg><div><p style="font-size:.78rem;font-weight:600;color:var(--white);">Betaal in 3 termijnen — rentevrij</p><p style="font-size:.68rem;color:var(--grey);">Betaal nu 1/3, dan na 30 en 60 dagen</p></div></div>
+                    <div class="klarna-option"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:18px;height:18px;color:#FFB3C7;flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg><div><p style="font-size:.78rem;font-weight:600;color:var(--white);">Achteraf betalen — 30 dagen</p><p style="font-size:.68rem;color:var(--grey);">Ontvang eerst, betaal later</p></div></div>
                   </div>
-                  <a href="https://wa.me/31683491518?text=Hi%2C%20ik%20wil%20graag%20betalen%20via%20Klarna" target="_blank" rel="noopener" class="btn btn--full" style="background:#FFB3C7;color:#17120F;border-color:#FFB3C7;margin-top:1rem;font-size:.72rem;font-weight:700;">
-                    Regelen via WhatsApp
-                  </a>
+                  <a href="https://wa.me/31683491518?text=Hi%2C%20ik%20wil%20graag%20betalen%20via%20Klarna" target="_blank" rel="noopener" class="btn btn--full" style="background:#FFB3C7;color:#17120F;border-color:#FFB3C7;margin-top:1rem;font-size:.72rem;font-weight:700;">Regelen via WhatsApp</a>
                   <p style="font-size:.63rem;color:var(--grey);text-align:center;margin-top:.6rem;">Klarna activering vereist · Beschikbaar in overleg</p>
                 </div>
               </div>
-            </div>
 
+              <!-- Creditcard of betaalpas -->
+              <label class="pm-row" data-method="card" onclick="switchPayment('card')">
+                <input type="radio" name="pm" value="card" hidden/>
+                <span class="pm-row__radio" aria-hidden="true"><span class="pm-row__radio-dot"></span></span>
+                <div class="pm-row__body">
+                  <span class="pm-row__title">Creditcard of betaalpas</span>
+                  <span class="pm-row__desc">Snel en eenvoudig betalen met je creditcard of betaalpas</span>
+                </div>
+                <div class="pm-row__logos">
+                  <svg viewBox="0 0 38 22" style="height:20px;"><rect width="38" height="22" rx="3" fill="#1A1F71"/><text x="5" y="15.5" font-family="Arial,sans-serif" font-size="10" font-weight="900" fill="white" letter-spacing=".5">VISA</text></svg>
+                  <svg viewBox="0 0 38 22" style="height:20px;"><rect width="38" height="22" rx="3" fill="#252525"/><circle cx="14" cy="11" r="7" fill="#EB001B"/><circle cx="24" cy="11" r="7" fill="#F79E1B"/><path d="M19 5a7 7 0 010 12 7 7 0 010-12z" fill="#FF5F00"/></svg>
+                  <svg viewBox="0 0 38 22" style="height:20px;"><rect width="38" height="22" rx="3" fill="#007BC1"/><text x="3" y="15.5" font-family="Arial,sans-serif" font-size="8.5" font-weight="900" fill="white">AMEX</text></svg>
+                </div>
+              </label>
+              <div class="pm-expand" id="pm-expand-card" style="display:none;">
+                <p style="font-size:.78rem;color:var(--white-soft);margin-bottom:.9rem;">Betaal met je kaart via PayPal — geen PayPal-account nodig. Klik hieronder en kies <strong style="color:var(--white);">"Betalen met Debet- of Creditcard"</strong>.</p>
+                <div id="card-paypal-container" style="min-height:50px;"></div>
+              </div>
+
+              <!-- Bancontact -->
+              <label class="pm-row" data-method="bancontact" onclick="switchPayment('bancontact')">
+                <input type="radio" name="pm" value="bancontact" hidden/>
+                <span class="pm-row__radio" aria-hidden="true"><span class="pm-row__radio-dot"></span></span>
+                <div class="pm-row__body">
+                  <span class="pm-row__title">Bancontact</span>
+                  <span class="pm-row__desc">Veilig betalen via je eigen Belgische bank</span>
+                </div>
+                <div class="pm-row__logos">
+                  <svg viewBox="0 0 62 22" style="height:20px;width:auto;"><defs><clipPath id="bc-clip"><rect width="62" height="22" rx="3"/></clipPath></defs><g clip-path="url(#bc-clip)"><rect width="31" height="22" fill="#005498"/><rect x="31" width="31" height="22" fill="#FF6600"/><text x="4" y="14.5" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="white">BANCO</text><text x="33" y="14.5" font-family="Arial,sans-serif" font-size="7.5" font-weight="700" fill="white">NTACT</text></g></svg>
+                </div>
+              </label>
+              <div class="pm-expand" id="pm-expand-bancontact" style="display:none;">
+                <p style="font-size:.78rem;color:var(--white-soft);margin-bottom:.9rem;">Betaal veilig via je Belgische bank — je wordt doorgestuurd naar Bancontact om de betaling te bevestigen.</p>
+                <div id="bancontact-button-container" style="min-height:50px;"></div>
+              </div>
+
+            </div>
           </div><!-- /#pm-wrap -->
 
           <!-- ── SECURE BADGES ── -->
@@ -325,11 +269,12 @@
           <div class="accepted-cards" style="margin-top:.8rem;">
             <span>Accepted:</span>
             <span class="card-badge" style="background:rgba(204,0,102,.1);border-color:rgba(204,0,102,.35);color:#CC0066;font-weight:700;">iDEAL</span>
-            <span class="card-badge" style="background:rgba(0,48,135,.1);border-color:rgba(0,48,135,.35);color:#003087;font-weight:700;">PayPal</span>
+            <span class="card-badge" style="background:rgba(244,232,41,.1);border-color:rgba(244,232,41,.4);color:#b5a800;font-weight:700;">Wero</span>
             <span class="card-badge">Visa</span>
             <span class="card-badge">Mastercard</span>
             <span class="card-badge">Amex</span>
             <span class="card-badge" style="background:rgba(255,179,199,.15);border-color:rgba(255,179,199,.4);color:#FFB3C7;font-weight:700;">Klarna</span>
+            <span class="card-badge" style="background:rgba(0,84,152,.1);border-color:rgba(0,84,152,.35);color:#005498;font-weight:700;">Bancontact</span>
           </div>
         </div>
 
