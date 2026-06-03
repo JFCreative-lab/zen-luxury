@@ -270,8 +270,29 @@ function renderPaymentButtons(method) {
     const klarnaContainer = document.getElementById('klarna-button-container');
     const klarnaLoading   = document.getElementById('klarna-loading-msg');
     const klarnaNote      = document.getElementById('klarna-eligible-msg');
-    if (klarnaLoading) klarnaLoading.style.display = 'none';
+
+    function hideLoading() { if (klarnaLoading) klarnaLoading.style.display = 'none'; }
+    function renderFallback(note) {
+      // Standard PayPal button — always works, no special account setup needed
+      hideLoading();
+      if (note && klarnaContainer) {
+        klarnaContainer.insertAdjacentHTML('beforebegin',
+          '<p style="font-size:.72rem;color:var(--white-soft);margin-bottom:.8rem;line-height:1.7;">' + note + '</p>'
+        );
+      }
+      paypal.Buttons({
+        ...btnBase,
+        style: { layout: 'vertical', color: 'gold', shape: 'rect', label: 'pay', height: 50 },
+      }).render('#klarna-button-container').catch(() => {
+        if (klarnaContainer) klarnaContainer.innerHTML =
+          '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
+          'Betaalknop kon niet laden. Vernieuw de pagina of kies een andere methode.' +
+          '</p>';
+      });
+    }
+
     try {
+      // 1. Try native Klarna button first
       const klarnaBtn = paypal.Buttons({
         ...btnBase,
         fundingSource: paypal.FUNDING.KLARNA,
@@ -279,20 +300,27 @@ function renderPaymentButtons(method) {
       });
       if (klarnaBtn.isEligible()) {
         klarnaBtn.render('#klarna-button-container');
+        hideLoading();
         if (klarnaNote) klarnaNote.style.display = '';
       } else {
-        // Klarna not enabled on this PayPal account — show clear message
-        if (klarnaContainer) klarnaContainer.innerHTML =
-          '<p style="font-size:.78rem;color:var(--grey);padding:.6rem 0;line-height:1.7;">' +
-          'Klarna Achteraf Betalen is momenteel niet beschikbaar. ' +
-          'Activeer Klarna in je PayPal-accountinstellingen of kies een andere betaalmethode.' +
-          '</p>';
+        // 2. Try PayPal Pay Later (available in NL via PayPal)
+        const payLaterBtn = paypal.Buttons({
+          ...btnBase,
+          fundingSource: paypal.FUNDING.PAYLATER,
+          style: { height: 50, shape: 'rect' },
+        });
+        if (payLaterBtn.isEligible()) {
+          payLaterBtn.render('#klarna-button-container');
+          hideLoading();
+          if (klarnaNote) klarnaNote.style.display = '';
+        } else {
+          // 3. Guaranteed fallback — standard PayPal button always works
+          renderFallback('Klarna Achteraf Betalen is ingeschakeld via PayPal. Kies „Achteraf betalen” in het PayPal-venster als die optie beschikbaar is.');
+        }
       }
     } catch (e) {
-      if (klarnaContainer) klarnaContainer.innerHTML =
-        '<p style="font-size:.78rem;color:var(--grey);text-align:center;padding:.5rem 0;">' +
-        'Klarna tijdelijk niet beschikbaar. Kies een andere betaalmethode.' +
-        '</p>';
+      // Any SDK error — still show a working PayPal button
+      renderFallback(null);
     }
   }
 
