@@ -176,10 +176,6 @@ function buildOrder(actions) {
       },
     }],
     application_context: { brand_name: 'Zen Luxury Worldwide', user_action: 'PAY_NOW' },
-    // Pre-select bank so PayPal redirects directly to that bank (skips PayPal bank picker)
-    ...(selectedBankBic && activeMethod === 'ideal' ? {
-      payment_source: { ideal: { bic: selectedBankBic, country_code: 'NL' } },
-    } : {}),
   });
 }
 
@@ -192,15 +188,22 @@ function handleApprove(data, actions) {
   });
 }
 function handleCancel()   { showToast('Payment cancelled. Your cart is still saved.'); }
-function handleError(err) { console.error('Payment error:', err); showToast('Payment error. Please try again.'); }
+
+let _suppressNextError = false;
+function handleError(err) {
+  if (_suppressNextError) { _suppressNextError = false; return; }
+  console.error('Payment error:', err);
+  showToast('Payment error. Please try again.');
+}
 
 const onClick = (data, actions) => {
   if (activeMethod === 'ideal' && !selectedBankBic) {
     showToast('Selecteer eerst je bank om te betalen via iDEAL.');
     document.getElementById('bank-select-grid')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    _suppressNextError = true;
     return actions.reject();
   }
-  if (!validateForm()) return actions.reject();
+  if (!validateForm()) { _suppressNextError = true; return actions.reject(); }
   return actions.resolve();
 };
 const btnBase = { onClick, createOrder: (d,a) => buildOrder(a), onApprove: handleApprove, onCancel: handleCancel, onError: handleError };
